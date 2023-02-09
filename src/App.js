@@ -1,10 +1,10 @@
 import './App.css';
 import { Route, BrowserRouter, Routes } from 'react-router-dom';
-import {ListCourse} from './views/ListCourse';
+import ListCourse from './views/ListCourse';
 import Home from './views/Home';
-import {CreateCourse} from './components/CreateCourse';
-import {UpdateCourse} from './components/UpdateCourse';
-import {ViewCourse} from './components/ViewCourse';
+import CreateCourse from './components/CreateCourse';
+import UpdateCourse from './components/UpdateCourse';
+import ViewCourse from './components/ViewCourse';
 import Notfoundpage from './views/Notfoundpage';
 import ListCourseProtected from './components/ListCourseProtected';
 //import {RequiredAuth} from './hoc/RequireAuth';
@@ -16,7 +16,8 @@ function App() {
           <Routes>
             <Route path='/' element={<Home/>} />
             <Route path='/courses' element={<ListCourse/>} />
-            <Route path='/courses/view/:id' element={<ViewCourse/>} />
+            <Route path='/courses/view' element={<ViewCourse/>} />
+            
  {/*       <RequireAuth> */}
             <Route path='/coursesprotected' element={<ListCourseProtected/>} />
              <Route path='/courses/create' element={<CreateCourse/>} />
