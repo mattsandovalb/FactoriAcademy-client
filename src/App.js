@@ -1,23 +1,31 @@
-import logo from './logo.svg';
 import './App.css';
+import { Route, BrowserRouter, Routes } from 'react-router-dom';
+import {ListCourse} from './views/ListCourse';
+import Home from './views/Home';
+import {CreateCourse} from './components/CreateCourse';
+import {UpdateCourse} from './components/UpdateCourse';
+import {ViewCourse} from './components/ViewCourse';
+import Notfoundpage from './views/Notfoundpage';
+import ListCourseProtected from './components/ListCourseProtected';
+//import {RequiredAuth} from './hoc/RequireAuth';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <BrowserRouter>
+          <Routes>
+            <Route path='/' element={<Home/>} />
+            <Route path='/courses' element={<ListCourse/>} />
+            <Route path='/courses/view/:id' element={<ViewCourse/>} />
+ {/*       <RequireAuth> */}
+            <Route path='/coursesprotected' element={<ListCourseProtected/>} />
+             <Route path='/courses/create' element={<CreateCourse/>} />
+             <Route path='/courses/edit/:id' element={<UpdateCourse/>}/>
+  {/*       </RequireAuth> */}
+            <Route path='*' element={<Notfoundpage/>} />
+          </Routes>
+      </BrowserRouter>
+     
     </div>
   );
 }
