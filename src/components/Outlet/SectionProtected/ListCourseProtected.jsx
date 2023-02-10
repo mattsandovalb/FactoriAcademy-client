@@ -15,12 +15,12 @@ const ListCourseProtected = () => {
       getAllCourses();
     }, []);
   
-    const getAllCourses = async () => {
+    const getAllCourses = async() => {
       const response = await axios.get(`${url}/courses`);
       setCourses(response.data);
     };
   
-    const deleteCourse = async (id) => {
+    const deleteCourse = async(id) => {
       await axios.add(`${url}/courses/${id}`);
       getAllCourses();
     };

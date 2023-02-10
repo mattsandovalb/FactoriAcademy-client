@@ -2,11 +2,11 @@ import './App.css';
 import { Route, BrowserRouter, Routes } from 'react-router-dom';
 import ListCourse from './views/ListCourse';
 import Home from './views/Home';
-import CreateCourse from './components/CreateCourse';
-import UpdateCourse from './components/UpdateCourse';
-import ViewCourse from './components/ViewCourse';
+import CreateCourse from './components/Outlet/Forms/CRUD/CreateCourse';
+import UpdateCourse from './components/Outlet/Forms/CRUD/UpdateCourse';
+import ViewCourses from './components/Outlet/Section/ViewCourses';
 import Notfoundpage from './views/Notfoundpage';
-import ListCourseProtected from './components/ListCourseProtected';
+import ListCourseProtected from './components/Outlet/SectionProtected/ListCourseProtected';
 //import {RequiredAuth} from './hoc/RequireAuth';
 
 function App() {
@@ -16,7 +16,7 @@ function App() {
           <Routes>
             <Route path='/' element={<Home/>} />
             <Route path='/courses' element={<ListCourse/>} />
-            <Route path='/courses/view' element={<ViewCourse/>} />
+            <Route path='/courses/view' element={<ViewCourses/>} />
             
  {/*       <RequireAuth> */}
             <Route path='/coursesprotected' element={<ListCourseProtected/>} />
