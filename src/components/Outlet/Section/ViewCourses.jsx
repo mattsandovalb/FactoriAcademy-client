@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import {Card, Grid, CardContent, Typography, Button, CardActions} from '@mui/material';
 
+
 const url = 'http://localhost:8000/api'
 
 
@@ -38,8 +39,8 @@ const ViewCourses = () => {
     
 
     return (
-        
-      <Grid mb={2} xs={12} md={4} sm={6} container spacing={2}> 
+   
+      <Grid  mb={2} xs={12} md={4} sm={6} container spacing={2}> 
        {
             courses.map((course) => (
         <Card key={course.id} 
@@ -64,7 +65,7 @@ const ViewCourses = () => {
             ))
         }
         </Grid>
-    
+       
     );
     
 };

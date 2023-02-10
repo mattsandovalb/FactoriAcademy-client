@@ -3,7 +3,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { Table, Thead, Tbody, Tr, Th, Td } from 'react-super-responsive-table';
-import {Button} from '@mui/material';
+import {Button, Container} from '@mui/material';
+import Navbar from '../../Layouts/Navbar/Navbar';
 
 const url = 'http://localhost:8000/api'
 
@@ -20,13 +21,19 @@ const ListCourseProtected = () => {
       setCourses(response.data);
     };
   
-    const deleteCourse = async(id) => {
-      await axios.add(`${url}/courses/${id}`);
-      getAllCourses();
-    };
+   const deleteCourse = async (id) => {
+  try {
+    await axios.delete(`${url}/courses/${id}`);
+    getAllCourses();
+  } catch (error) {
+    console.error(error);
+  }
+};
   
     return (
-            <div>
+            <div>  
+               <Navbar/>
+              <Container  sx={{ p: 5}}>
             <Link  to="/create">
             <Button variant="contained">Create New Course</Button>
             </Link>
@@ -50,18 +57,15 @@ const ListCourseProtected = () => {
             <Td>{course.poster}</Td>
             <Td>{course.level}</Td>
             <Td>
-            <Link to={`/edit/${course.id}`} >
-            <Button variant="contained">Update</Button>
-            </Link>
-            <Button variant="contained" onClick={() => deleteCourse(course.id)}>
-            Delete
-            </Button>
+            <Button variant="contained" color="success">  <Link to={`/edit/${course.id}`} >Update</Link></Button>
+            <Button variant="outlined" color="error" onClick={() => deleteCourse(course.id)}> Delete</Button>
             </Td>
             </Tr>
             ))
             }
             </Tbody>
             </Table>
+            </Container>
             </div>
             );
 }
