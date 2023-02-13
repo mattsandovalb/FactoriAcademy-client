@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { Table, Thead, Tbody, Tr, Th, Td } from 'react-super-responsive-table';
 import {Button, Container} from '@mui/material';
 import Navbar from '../../Layouts/Navbar/Navbar';
+import Swal from 'sweetalert2';
 
 const url = 'http://localhost:8000/api'
 
@@ -22,6 +23,23 @@ const ListCourseProtected = () => {
     };
   
    const deleteCourse = async (id) => {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire(
+          'Deleted!',
+          'Your file has been deleted.',
+          'success'
+        )
+      }
+    })
   try {
     await axios.delete(`${url}/courses/${id}`);
     getAllCourses();

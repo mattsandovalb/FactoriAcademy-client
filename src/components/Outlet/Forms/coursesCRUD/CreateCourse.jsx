@@ -1,6 +1,8 @@
 import axios from 'axios';
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2'
+import { useForm } from 'react-hook-form';
 
 const url = 'http://localhost:8000/api/courses'
 
@@ -13,29 +15,42 @@ const CreateCourse = () => {
     const [level, setLevel] = useState('');
     const navigate = useNavigate();
 
-    const save = async (e) => {
+    const handleSave = async (e) => {
         e.preventDefault();
 
-        const formData = new FormData();
-        formData.append("title", title);
-        formData.append("description", description);
-        formData.append("tech", tech);
-        formData.append("poster", poster);
-        formData.append("level", level);
-
-        await axios.post(url, formData, {
-            headers: {
-              'Content-Type': 'multipart/form-data'
-            }
-          });
+        Swal.fire({
+            title: 'Do you want to save the changes?',
+            showDenyButton: true,
+            showCancelButton: true,
+            confirmButtonText: 'Save',
+            denyButtonText: `Don't save`,
+        }).then(async (result) => {
+            if (result.isConfirmed) {
+                const formData = new FormData();
+                formData.append("title", title);
+                formData.append("description", description);
+                formData.append("tech", tech);
+                formData.append("poster", poster);
+                formData.append("level", level);
+      
+                await axios.post(url, formData, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    }
+                });
       
           navigate('/coursesprotected');
+          Swal.fire('Saved!', '', 'success');
+        } else if (result.isDenied) {
+            Swal.fire('Changes are not saved', '', 'info');
+        }
+    });
         };
 
   return (
     <div>
         <h3>Create</h3>
-        <form onSubmit={save}>
+        <form onSubmit={handleSave}>
             <div className='mb-3'>
                 <label className='form-label'> TITLE </label>
                 <input 

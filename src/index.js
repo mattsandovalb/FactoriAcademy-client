@@ -3,8 +3,9 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-
 import {ThemeProvider, createTheme} from '@mui/material';
+import Swal from 'sweetalert2';
+
 const theme = createTheme({
   palette: {
     primary: {
@@ -47,9 +48,18 @@ const theme = createTheme({
     },
   },
 });
+/* Swal.setDefaults({
+  customClass: {
+    container: theme.palette.complement1.main,
+    popup: theme.palette.complement2.main,
+    header: theme.palette.primary.main,
+    title: theme.typography.h1.fontWeight,
+    content: theme.typography.body1.fontWeight,
+    confirmButton: theme.palette.secondary.main,
+  },
+});
 
-
-
+ */
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -60,7 +70,5 @@ root.render(
   </React.StrictMode>
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+
 reportWebVitals();

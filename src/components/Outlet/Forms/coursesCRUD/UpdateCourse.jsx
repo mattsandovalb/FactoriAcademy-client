@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 const url = 'http://localhost:8000/api/courses/';
 
@@ -27,28 +28,40 @@ const UpdateCourse = () => {
 
   const handleUpdate = async (event) => {
     event.preventDefault();
+     
+    Swal.fire({
+      title: 'Do you want to save the changes?',
+      showDenyButton: true,
+      showCancelButton: true,
+      confirmButtonText: 'Save',
+      denyButtonText: `Don't save`,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const formData = new FormData();
+        formData.append('title', title);
+        formData.append('description', description);
+        formData.append('tech', tech);
+        formData.append('poster', poster);
+        formData.append('level', level);
 
-    const formData = new FormData();
-    formData.append('title', title);
-    formData.append('description', description);
-    formData.append('tech', tech);
-    formData.append('poster', poster);
-    formData.append('level', level);
+        axios.put(`http://localhost:8000/api/courses/${id}`, formData, {
+        headers: {
+            'Content-Type': 'multipart/form-data',
+        },
+      })
+        .then(response => {
+            console.log(response.data);
+        })
+        .catch(error => {
+            console.error(error.response.data);
+        });
 
-    axios.put(`http://localhost:8000/api/courses/${id}`, formData, {
-    headers: {
-        'Content-Type': 'multipart/form-data',
-    },
-})
-    .then(response => {
-        console.log(response.data);
-    })
-    .catch(error => {
-        console.error(error.response.data);
+        navigate('/coursesprotected');
+        Swal.fire('Saved!', '', 'success');
+      } else if (result.isDenied) {
+        Swal.fire('Changes are not saved', '', 'info');
+      }
     });
-
-
-    navigate('/coursesprotected');
   };
 
   return (
