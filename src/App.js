@@ -18,10 +18,11 @@ function App() {
             <Route path='/courses' element={<ListCourse/>} />
             <Route path='/courses/view' element={<ViewCourses/>} />
             
+            
  {/*       <RequireAuth> */}
             <Route path='/coursesprotected' element={<ListCourseProtected/>} />
              <Route path='/courses/create' element={<CreateCourse/>} />
-             <Route path='/courses/edit/:id' element={<UpdateCourse/>}/>
+             <Route path='/courses/:id/edit' element={<UpdateCourse/>}/>
   {/*       </RequireAuth> */}
             <Route path='*' element={<Notfoundpage/>} />
           </Routes>

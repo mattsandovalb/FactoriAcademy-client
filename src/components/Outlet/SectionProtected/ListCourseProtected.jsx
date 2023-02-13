@@ -34,7 +34,7 @@ const ListCourseProtected = () => {
             <div>  
                <Navbar/>
               <Container  sx={{ p: 5}}>
-            <Link  to="/create">
+            <Link  to="/courses/create">
             <Button variant="contained">Create New Course</Button>
             </Link>
             <Table>
@@ -57,7 +57,7 @@ const ListCourseProtected = () => {
             <Td>{course.poster}</Td>
             <Td>{course.level}</Td>
             <Td>
-            <Button variant="contained" color="success">  <Link to={`/edit/${course.id}`} >Update</Link></Button>
+            <Button variant="contained" color="success">  <Link to={`/courses/${course.id}/edit`} >Update</Link></Button>
             <Button variant="outlined" color="error" onClick={() => deleteCourse(course.id)}> Delete</Button>
             </Td>
             </Tr>
