@@ -21,32 +21,48 @@ const ListCourseProtected = () => {
       const response = await axios.get(`${url}/courses`);
       setCourses(response.data);
     };
-  
-   const deleteCourse = async (id) => {
-    Swal.fire({
-      title: 'Are you sure?',
-      text: "You won't be able to revert this!",
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, delete it!'
-    }).then((result) => {
-      if (result.isConfirmed) {
-        Swal.fire(
-          'Deleted!',
-          'Your file has been deleted.',
-          'success'
-        )
-      }
-    })
-  try {
-    await axios.delete(`${url}/courses/${id}`);
-    getAllCourses();
-  } catch (error) {
-    console.error(error);
-  }
-};
+    
+    const deleteCourse = async (id) => {
+      Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Yes, delete it!',
+        cancelButtonText: 'No, cancel!',
+        reverseButtons: true
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          try {
+            // Perform the actual delete action here
+            const response = await axios.delete(`${url}/courses/${id}`);
+
+            if (response.status === 200) {
+              Swal.fire(
+                'Deleted!',
+                'Your file has been deleted.',
+                'success'
+              );
+            }
+          } catch (error) {
+            console.error(error);
+            Swal.fire(
+              'Error',
+              'An error occurred while trying to delete the course.',
+              'error'
+            );
+          }
+        } else if (
+          result.dismiss === Swal.DismissReason.cancel
+        ) {
+          Swal.fire(
+            'Cancelled',
+            'Your imaginary file is safe :)',
+            'error'
+          );
+        }
+      });
+  };
   
     return (
             <div>  

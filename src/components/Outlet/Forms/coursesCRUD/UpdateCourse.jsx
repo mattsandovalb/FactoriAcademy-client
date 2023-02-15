@@ -1,7 +1,8 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams, Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import {TextField, Button, Container, Typography, Box, FormControl} from '@mui/material';
 
 const url = 'http://localhost:8000/api/courses/';
 
@@ -38,81 +39,94 @@ const UpdateCourse = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         const formData = new FormData();
-        formData.append('title', title);
-        formData.append('description', description);
-        formData.append('tech', tech);
-        formData.append('poster', poster);
-        formData.append('level', level);
+              formData.append('title', title);
+              formData.append('description', description);
+              formData.append('tech', tech);
+              if (poster) {
+                formData.append('poster', poster);
+              }
+              formData.append('level', level);
 
-        axios.put(`http://localhost:8000/api/courses/${id}`, formData, {
-        headers: {
-            'Content-Type': 'multipart/form-data',
-        },
-      })
-        .then(response => {
-            console.log(response.data);
-        })
-        .catch(error => {
-            console.error(error.response.data);
-        });
-
+              axios.put(`${url}${id}`, formData, {
+                headers: {
+                  'Content-Type': 'multipart/form-data'
+                }
+      }).then(() => {
         navigate('/coursesprotected');
-        Swal.fire('Saved!', '', 'success');
-      } else if (result.isDenied) {
-        Swal.fire('Changes are not saved', '', 'info');
-      }
-    });
-  };
+        Swal.fire('Updated!', '', 'success');
+      }).catch((error) => {
+        Swal.fire('Error', error.message, 'error');
+      });
+    } else if (result.isDenied) {
+      Swal.fire('Changes are not saved', '', 'info');
+    }
+  });
+};
+const handleFileChange = (event) => {
+  setPoster(event.target.files[0]);
+};
 
-  return (
-    <div>
-      <h3>Update</h3>
-      <form onSubmit={handleUpdate}>
-        <div className="mb-3">
-          <label className="form-label">TITLE</label>
-          <input
-            value={title}
-            onChange={(event) => setTitle(event.target.value)}
-            type="text"
-            className="form-control"
-          />
-        </div>
-        <div className="mb-3">
-          <label className="form-label">DESCRIPTION</label>
-          <input
-            value={description}
-            onChange={(event) => setDescription(event.target.value)}
-            type="text"
-            className="form-control"
-          />
-        </div>
-        <div className="mb-3">
-          <label className="form-label">TECH</label>
-          <input
-            value={tech}
-            onChange={(event) => setTech(event.target.value)}
-            type="text"
-            className="form-control"
-          />
-        </div>
-        <div className="mb-3">
-          <label className="form-label">POSTER</label>
-          <input
-            onChange={(event) => setPoster(event.target.files[0])}
+return (
+  <Container maxWidth="sm">
+  <Box sx={{ mt: 5 }}>
+  <Typography variant="h1" component="h2">
+        Update Course
+      </Typography>
+      <FormControl fullWidth sx={{ m: 1 }}onSubmit={handleUpdate}>
+      <Typography  variant="h4" component="h2"> TITLE </Typography>
 
-                type="file"  className='form-control'/>
-            </div>
-            <div className='mb-3'>
-                <label className='form-label'> LEVEL </label>
-                <input 
-                value={level} 
-                onChange={(e)=> setLevel(e.target.value)} 
-                type="text"  className='form-control'/>
-            </div>
-            <button type="submit" className='btn btn-success'>SAVE</button>
-        </form>
-    </div>
-  )
+        <TextField
+          fullWidth
+          label="Title"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+          margin="normal"
+          required
+        />
+        <Typography  variant="h4" component="h2"> Description </Typography>
+        <TextField
+          fullWidth
+          label="Description"
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+          margin="normal"
+          required
+        />
+       <Typography  variant="h4" component="h2"> Tech </Typography>
+        <TextField
+          fullWidth
+          label="Tech"
+          value={tech}
+          onChange={(e) => setTech(e.target.value)}
+          margin="normal"
+          required
+        />
+      
+        <Typography  variant="h4" component="h2"> Level </Typography>    
+        <TextField
+          fullWidth
+          label="Level"
+          value={level}
+          onChange={(e) => setLevel(e.target.value)}
+          margin="normal"
+          required
+        />
+       <Typography  variant="h4" component="h2"> Poster </Typography>  
+        <FormControl fullWidth margin="normal">
+          <input
+            type="file"
+            accept=".jpg,.jpeg,.png"
+            onChange={handleFileChange}
+          />
+        </FormControl>
+          <Button variant="contained" type="submit" onClick={handleUpdate}>
+            Save
+          </Button>
+          <Button variant="outlined"><Link to="/coursesprotected">Cancel</Link></Button>
+</FormControl>
+    </Box>
+  </Container>
+);
 }
 
 export default UpdateCourse;

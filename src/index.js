@@ -4,7 +4,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {ThemeProvider, createTheme} from '@mui/material';
-import Swal from 'sweetalert2';
+//import Swal from 'sweetalert2';
 
 const theme = createTheme({
   palette: {

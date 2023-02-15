@@ -1,8 +1,10 @@
 import axios from 'axios';
-import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom';
-import Swal from 'sweetalert2'
-import { useForm } from 'react-hook-form';
+import React, { useState } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
+import Swal from 'sweetalert2';
+import {TextField, Button, Container, Typography, Box, FormControl} from '@mui/material';
+
+
 
 const url = 'http://localhost:8000/api/courses'
 
@@ -45,49 +47,51 @@ const CreateCourse = () => {
             Swal.fire('Changes are not saved', '', 'info');
         }
     });
+          navigate('/coursesprotected');
         };
 
   return (
-    <div>
-        <h3>Create</h3>
-        <form onSubmit={handleSave}>
-            <div className='mb-3'>
-                <label className='form-label'> TITLE </label>
-                <input 
+    <Container maxWidth="sm">
+    <Box sx={{ mt: 5 }}>
+
+        <Typography variant="h1" component="h2">Create new course</Typography>
+        <FormControl fullWidth sx={{ m: 1 }} onSubmit={handleSave}>
+          
+                <Typography  variant="h4" component="h2"> TITLE </Typography>
+                <TextField  id="outlined-basic" label="title" variant="outlined" 
                 value={title} 
                 onChange={(e)=> setTitle(e.target.value)} 
-                type="text"  className='form-control'/>
-            </div>
-            <div className='mb-3'>
-                <label className='form-label'> DESCRIPTION </label>
-                <input 
+                type="text"  />
+           
+            <Typography  variant="h4" component="h2"> Description </Typography>
+                <TextField id="outlined-basic" label="Description" variant="outlined" 
                 value={description} 
                 onChange={(e)=> setDescription(e.target.value)} 
-                type="text"  className='form-control'/>
-            </div>
-            <div className='mb-3'>
-                <label className='form-label'> TECH </label>
-                <input 
+                type="text"  />
+        
+         
+            <Typography  variant="h4" component="h2"> Tech </Typography> 
+               <TextField id="outlined-basic" label="Outlined" variant="outlined" 
                 value={tech} 
                 onChange={(e)=> setTech(e.target.value)} 
-                type="text"  className='form-control'/>
-            </div><div className='mb-3'>
-                <label className='form-label'> POSTER </label>
-                <input 
-                value={poster} 
-                onChange={(e)=> setPoster(e.target.value)} 
-                type="file"  className='form-control'/>
-            </div>
-            <div className='mb-3'>
-                <label className='form-label'> LEVEL </label>
-                <input 
+                type="text" />
+            <Typography  variant="h4" component="h2"> Level </Typography>    
+              <TextField id="outlined-basic" label="Outlined" variant="outlined" 
                 value={level} 
                 onChange={(e)=> setLevel(e.target.value)} 
                 type="text"  className='form-control'/>
-            </div>
-            <button type="submit" className='btn btn-success'>SAVE</button>
-        </form>
-    </div>
+                
+         <Typography  variant="h4" component="h2"> Poster </Typography>  
+            <TextField id="outlined-basic" variant="outlined" 
+                value={poster} 
+                onChange={(e)=> setPoster(e.target.value)} 
+                type="file" />
+            <Button variant="outlined"><Link to="/coursesprotected">Cancel</Link></Button>
+            <Button type="submit" variant="contained" onClick={handleSave}>SAVE</Button>
+            </FormControl>
+    
+        </Box>
+    </Container>
   )
 }
 
