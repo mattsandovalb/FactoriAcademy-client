@@ -47,6 +47,15 @@ const theme = createTheme({
       fontSize: '14px',
     },
   },
+  components: {
+    MuiLink: {
+      styleOverrides: {
+        root: {
+          textDecoration: 'none',
+        },
+      },
+    },
+  },
 });
 /* Swal.setDefaults({
   customClass: {

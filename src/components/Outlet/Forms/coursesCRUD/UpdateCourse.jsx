@@ -63,7 +63,9 @@ const UpdateCourse = () => {
   });
 };
 const handleFileChange = (event) => {
-  setPoster(event.target.files[0]);
+  if (event.target.files && event.target.files.length > 0) {
+    setPoster(event.target.files[0]);
+  }
 };
 
 return (
@@ -111,11 +113,12 @@ return (
           margin="normal"
           required
         />
-       <Typography  variant="h4" component="h2"> Poster </Typography>  
-        <FormControl fullWidth margin="normal">
-          <input
-            type="file"
-            accept=".jpg,.jpeg,.png"
+       <Typography  variant="h4" component="h2" > Poster </Typography>  
+        <FormControl fullWidth margin="normal" for="poster">
+          <TextField
+            for="poster"
+            type="text"
+           // accept=".jpg,.jpeg,.png"
             onChange={handleFileChange}
           />
         </FormControl>

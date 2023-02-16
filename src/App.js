@@ -1,12 +1,13 @@
 import './App.css';
 import { Route, BrowserRouter, Routes } from 'react-router-dom';
-import ListCourse from './views/ListCourse';
+import UserCourses from './components/Outlet/Section/UserCourses';
 import Home from './views/Home';
 import CreateCourse from './components/Outlet/Forms/coursesCRUD/CreateCourse';
 import UpdateCourse from './components/Outlet/Forms/coursesCRUD/UpdateCourse';
-import ViewCourses from './components/Outlet/Section/ViewCourses';
 import Notfoundpage from './views/Notfoundpage';
 import ListCourseProtected from './components/Outlet/SectionProtected/ListCourseProtected';
+import AdminProfile from './views/AdminProfile';
+
 //import {RequiredAuth} from './hoc/RequireAuth';
 
 function App() {
@@ -15,16 +16,17 @@ function App() {
       <BrowserRouter>
           <Routes>
             <Route path='/' element={<Home/>} />
-            <Route path='/courses' element={<ListCourse/>} />
-            <Route path='/courses/view' element={<ViewCourses/>} />
-            
-            
- {/*       <RequireAuth> */}
-            <Route path='/coursesprotected' element={<ListCourseProtected/>} />
+            <Route path='*' element={<Notfoundpage/>} />
+
+ {/*       <RequireAuth> */} 
+             
+           <Route path='admin' element={<AdminProfile/>} />
+             <Route path='/coursesprotected' element={<ListCourseProtected/>} />
              <Route path='/courses/create' element={<CreateCourse/>} />
              <Route path='/courses/:id/edit' element={<UpdateCourse/>}/>
+
+            <Route path='/courses/my-courses' element={<UserCourses/>} />
   {/*       </RequireAuth> */}
-            <Route path='*' element={<Notfoundpage/>} />
           </Routes>
       </BrowserRouter>
      

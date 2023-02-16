@@ -81,11 +81,13 @@ const CreateCourse = () => {
                 onChange={(e)=> setLevel(e.target.value)} 
                 type="text"  className='form-control'/>
                 
-         <Typography  variant="h4" component="h2"> Poster </Typography>  
-            <TextField id="outlined-basic" variant="outlined" 
+         <Typography  variant="h4" component="h2" for="poster"> Poster </Typography>  
+            <TextField id="outlined-basic" variant="outlined"
+                accept="image/*, .png, .jpg, .gif, .web"
+                for="poster"
                 value={poster} 
                 onChange={(e)=> setPoster(e.target.value)} 
-                type="file" />
+                type="text" />
             <Button variant="outlined"><Link to="/coursesprotected">Cancel</Link></Button>
             <Button type="submit" variant="contained" onClick={handleSave}>SAVE</Button>
             </FormControl>
