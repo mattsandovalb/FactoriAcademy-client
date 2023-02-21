@@ -7,19 +7,19 @@ import Swal from 'sweetalert2';
 
 const url = 'http://localhost:8000/api';
 
-const ListCourseProtected = () => {
-  const [courses, setCourses] = useState([]);
+const ListUsersProtected = () => {
+  const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    getAllCourses();
+    getAllUsers();
   }, []);
 
-  const getAllCourses = async () => {
-    const response = await axios.get(`${url}/courses`);
-    setCourses(response.data);
+  const getAllUsers = async () => {
+    const response = await axios.get(`${url}/users`);
+    setUsers(response.data);
   };
 
-  const deleteCourse = async (id) => {
+  const deleteUser = async (id) => {
     Swal.fire({
       title: 'Are you sure?',
       text: "You won't be able to revert this!",
@@ -31,14 +31,14 @@ const ListCourseProtected = () => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          const response = await axios.delete(`${url}/courses/${id}`);
+          const response = await axios.delete(`${url}/users/${id}`);
           if (response.status === 200) {
             Swal.fire('Deleted!', 'Your file has been deleted.', 'success');
-            setCourses(courses.filter((course) => course.id !== id));
+            setUsers(users.filter((user) => user.id !== id));
           }
         } catch (error) {
           console.error(error);
-          Swal.fire('Error', 'An error occurred while trying to delete the course.', 'error');
+          Swal.fire('Error', 'An error occurred while trying to delete the user.', 'error');
         }
       } else if (result.dismiss === Swal.DismissReason.cancel) {
         Swal.fire('Cancelled', 'Your imaginary file is safe :)', 'error');
@@ -50,43 +50,38 @@ const ListCourseProtected = () => {
     <>
       <TableContainer component={Paper} sx={{ p: 1}}>
         <Typography variant="h1" component="h2" sx={{ p: 3 }}>
-          Courses
+          USERS
         </Typography>
         <Button variant="contained" color="primary">
-       <Link to="/courses/create" sx={{ color: 'white', textDecoration: 'none' }}>
-       Create New Course
+       <Link to="/users/create" sx={{ color: 'white', textDecoration: 'none' }}>
+       Create New USER 
       </Link> 
     </Button>
         <Table>
           <TableHead>
             <TableRow>
               <TableCell>ID</TableCell>
-              <TableCell>Title</TableCell>
-              <TableCell>Description</TableCell>
-              <TableCell>Tech</TableCell>
-              <TableCell>Poster</TableCell>
-              <TableCell>Level</TableCell>
-              <TableCell>ACTION</TableCell>
+              <TableCell>Name</TableCell>
+              <TableCell>E-Mail</TableCell>
+              <TableCell>Password</TableCell>
+              <TableCell>Role</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            {courses.map((course) => (
-              <TableRow key={course.id}>
-                <TableCell>{course.id}</TableCell>
-                <TableCell>{course.title}</TableCell>
-                <TableCell>{course.description}</TableCell>
-                <TableCell>{course.tech}</TableCell>
+            {users.map((user) => (
+             <TableRow key={user.id}>
+                <TableCell>{user.id}</TableCell>
+                <TableCell>{user.name}</TableCell>
+                <TableCell>{user.email}</TableCell>
+                <TableCell>{user.password}</TableCell>
+                <TableCell>{user.role}</TableCell>
                 <TableCell>
-                  <img src={`http://localhost:8000/images/poster/${course.poster}`} alt={course.title} height={60} />
-                </TableCell>
-                <TableCell>{course.level}</TableCell>
-                <TableCell>
-                  <Link to={`/courses/${course.id}/edit`}>
+                  <Link to={`/users/${user.id}/edit`}>
                     <IconButton color="primary">
                       <Edit />
                     </IconButton>
                   </Link>
-                  <IconButton color="error" onClick={() => deleteCourse(course.id)}>
+                  <IconButton color="error" onClick={() => deleteUser(user.id)}>
                     <Delete />
                   </IconButton>
                 </TableCell>
@@ -99,4 +94,4 @@ const ListCourseProtected = () => {
   );
 };
 
-export default ListCourseProtected;
+export default ListUsersProtected;

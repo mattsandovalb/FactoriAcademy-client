@@ -49,7 +49,6 @@ const CreateCourse = () => {
     });
           navigate('/coursesprotected');
         };
-
   return (
     <Container maxWidth="sm">
     <Box sx={{ mt: 5 }}>

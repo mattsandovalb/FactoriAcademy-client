@@ -5,14 +5,13 @@ import Swal from 'sweetalert2';
 import { Button, Box, Container, FormControl, TextField, Typography } from '@mui/material';
 
 
-const url = 'http://localhost:8000/api/courses/';
+const url = 'http://localhost:8000/api/users/';
 
-const UpdateCourse = () => {
-  const [title, setTitle] = useState('');
-  const [description, setDescription] = useState('');
-  const [tech, setTech] = useState('');
-  const [poster, setPoster] = useState(null);
-  const [level, setLevel] = useState('');
+const UpdateUser = () => {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [role, setRole] = useState(null);
   const { id } = useParams();
   const navigate = useNavigate();
  
@@ -20,11 +19,11 @@ const UpdateCourse = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(`${url}${id}`);
-        setTitle(response.data.title);
-        setDescription(response.data.description);
-        setTech(response.data.tech);
-        setPoster(response.data.poster);
-        setLevel(response.data.level);
+        setName(response.data.name);
+        setEmail(response.data.email);
+        setPassword(response.data.password);
+        setRole(response.data.role);
+    
       } catch (error) {
         console.error(error);
       }
@@ -45,14 +44,10 @@ const UpdateCourse = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         const formData = new FormData();
-              formData.append('title', title);
-              formData.append('description', description);
-              formData.append('tech', tech);
-              if (poster) {
-                formData.append('poster', poster);
-              }
-              formData.append('level', level);
-
+              formData.append('name', name);
+              formData.append('email', email);
+              formData.append('password', password);
+              formData.append('role', role);
               axios.put(`${url}${id}`, formData, {
                 headers: {
                   'Content-Type': 'multipart/form-data'
@@ -68,65 +63,51 @@ const UpdateCourse = () => {
     }
   });
 };
-const handleFileChange = (event) => {
-  if (event.target.files && event.target.files.length > 0) {
-    setPoster(event.target.files[0]);
-  }
-};
 
 return (
   <Container maxWidth="sm">
   <Box sx={{ mt: 5 }}>
   <Typography variant="h1" component="h2">
-        Update Course
+        Update USER
       </Typography>
       <FormControl fullWidth sx={{ m: 1 }} onSubmit={handleUpdate}>
-      <Typography  variant="h4" component="h2"> TITLE </Typography>
+      <Typography  variant="h4" component="h2"> NAME </Typography>
 
         <TextField
           fullWidth
-          label="Title"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
+          label="name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
           margin="normal"
           required
         />
         <Typography  variant="h4" component="h2"> Description </Typography>
         <TextField
           fullWidth
-          label="Description"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
+          label="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
           margin="normal"
           required
         />
        <Typography  variant="h4" component="h2"> Tech </Typography>
         <TextField
           fullWidth
-          label="Tech"
-          value={tech}
-          onChange={(e) => setTech(e.target.value)}
+          label="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
           margin="normal"
           required
         />
-      
         <Typography  variant="h4" component="h2"> Level </Typography>    
         <TextField
           fullWidth
-          label="Level"
-          value={level}
-          onChange={(e) => setLevel(e.target.value)}
+          label="role"
+          value={role}
+          onChange={(e) => setRole(e.target.value)}
           margin="normal"
           required
         />
-       <Typography  variant="h4" component="h2" > Poster </Typography>  
-        <FormControl fullWidth margin="normal" htmlFor="poster">
-          <TextField
-            htmlFor="poster"
-            type="text"
-            onChange={handleFileChange}
-          />
-        </FormControl>
           <Button variant="contained" type="submit" onClick={handleUpdate}>
             Save
           </Button>
@@ -137,4 +118,4 @@ return (
 );
 }
 
-export default UpdateCourse;
+export default UpdateUser;
