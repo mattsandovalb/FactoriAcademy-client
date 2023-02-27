@@ -1,7 +1,5 @@
-import axios from 'axios';
+/* import axios from 'axios';
   
-
-
 
 class CrudService {
   async getCourses(page = 1) {
@@ -10,12 +8,8 @@ class CrudService {
     return response.data;
   }
 
-  async getPersonImage(url) {
-    const id = url.match(/\/(\d+)\/$/)[1];
-    const imageUrl = `https://starwars-visualguide.com/assets/img/characters/${id}.jpg`;
-    return imageUrl;
-  }
 
 }
 
-export const swService = new CrudService();
+export const CrudService = new CrudService();
+ */
