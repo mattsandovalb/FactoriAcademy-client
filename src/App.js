@@ -1,4 +1,4 @@
-import './App.css';
+
 import { Route, BrowserRouter, Routes } from 'react-router-dom';
 import UserCourses from './components/Outlet/Section/UserCourses';
 import Home from './views/Home';
