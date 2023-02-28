@@ -1,12 +1,11 @@
-import axios from 'axios';
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { Button, Box, Container, FormControl, TextField, Typography } from '@mui/material';
-
-const url = 'http://localhost:8000/api/users/';
+import { createUser } from './../../../../services/apiService';
 
 const CreateUser = () => {
+
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -22,28 +21,23 @@ const CreateUser = () => {
       showCancelButton: true,
       confirmButtonText: 'Create',
       denyButtonText: `Cancel`,
-    }).then((result) => {
+    }).then(async(result) => {
       if (result.isConfirmed) {
         const formData = new FormData();
         formData.append('name', name);
         formData.append('email', email);
         formData.append('password', password);
         formData.append('role', role);
-        axios.post(url, formData, {
-          headers: {
-            'Content-Type': 'multipart/form-data'
-          }
-        }).then(() => {
+       
+        await createUser(formData);
+
           navigate('/usersprotected');
-          Swal.fire('Created!', '', 'success');
-        }).catch((error) => {
-          Swal.fire('Error', error.message, 'error');
-        });
+          Swal.fire('New User Created!', '', 'success'); 
       } else if (result.isDenied) {
-        Swal.fire('Canceled', '', 'info');
-      }
-    });
-  };
+        Swal.fire('Changes are not saved', '', 'info');
+    }
+});
+};
 
   return (
     <Container maxWidth="sm">
@@ -91,7 +85,7 @@ const CreateUser = () => {
           <Button variant="contained" type="submit" onClick={handleSubmit}>
             Create
           </Button>
-          <Button variant="outlined"><Link to="/coursesprotected">Cancel</Link></Button>
+          <Button variant="outlined"><Link to="/usersprotected">Cancel</Link></Button>
         </FormControl>
       </Box>
     </Container>

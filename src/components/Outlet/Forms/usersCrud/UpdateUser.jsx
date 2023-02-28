@@ -1,11 +1,9 @@
-import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { Button, Box, Container, FormControl, TextField, Typography } from '@mui/material';
 
-
-const url = 'http://localhost:8000/api/users/';
+import { getUserById, updateUser } from './../../../../services/apiService';
 
 const UpdateUser = () => {
   const [name, setName] = useState('');
@@ -18,11 +16,11 @@ const UpdateUser = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`${url}${id}`);
-        setName(response.data.name);
-        setEmail(response.data.email);
-        setPassword(response.data.password);
-        setRole(response.data.role);
+        const response = await getUserById(id);
+        setName(response.name);
+        setEmail(response.email);
+        setPassword(response.password);
+        setRole(response.role);
     
       } catch (error) {
         console.error(error);
@@ -41,23 +39,19 @@ const UpdateUser = () => {
       showCancelButton: true,
       confirmButtonText: 'Save',
       denyButtonText: `Don't save`,
-    }).then((result) => {
+    }).then(async(result) => {
       if (result.isConfirmed) {
         const formData = new FormData();
               formData.append('name', name);
               formData.append('email', email);
               formData.append('password', password);
               formData.append('role', role);
-              axios.put(`${url}${id}`, formData, {
-                headers: {
-                  'Content-Type': 'multipart/form-data'
-                }
-      }).then(() => {
+
+              await  updateUser(id, formData); 
+
         navigate('/usersprotected');
+
         Swal.fire('Updated!', '', 'success');
-      }).catch((error) => {
-        Swal.fire('Error', error.message, 'error');
-      });
     } else if (result.isDenied) {
       Swal.fire('Changes are not saved', '', 'info');
     }

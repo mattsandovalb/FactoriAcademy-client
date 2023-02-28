@@ -34,7 +34,7 @@ const CreateCourse = () => {
                 await createCourse(formData);
       
                 navigate('/coursesprotected');
-                Swal.fire('Saved!', '', 'success');
+                Swal.fire('New Course Created!', '', 'success');
             } else if (result.isDenied) {
                 Swal.fire('Changes are not saved', '', 'info');
             }

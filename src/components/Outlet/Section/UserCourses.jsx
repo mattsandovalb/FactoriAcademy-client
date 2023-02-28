@@ -13,7 +13,8 @@ import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
-function createData(userId, user_name, user_email, user_password, courses, total_points, start_date, finish_date) {
+
+ function createData(userId, user_name, user_email, user_password, courses, total_points, start_date, finish_date) {
     return {
     userId,
     user_name,
@@ -23,10 +24,10 @@ function createData(userId, user_name, user_email, user_password, courses, total
     total_points,
  history: [
     {
-    start_date,
-    finish_date,
-    courses,
-    total_points
+    start_date: '2023-01-05',
+    finish_date: '202-01-25',
+    courses:'HTML',
+    total_points: 'X*100%/Y',
     }
     ],
     };
@@ -37,7 +38,8 @@ function createData(userId, user_name, user_email, user_password, courses, total
     const [open, setOpen] = React.useState(false);
     
     return (
-    <React.Fragment>
+    <React.Fragment >
+      <Typography>Users - Courses</Typography>
     <TableRow sx={{ '& > *': { borderBottom: 'unset' } }}>
     <TableCell>
     <IconButton
@@ -55,7 +57,7 @@ function createData(userId, user_name, user_email, user_password, courses, total
     <TableCell align="right">{row.user_email}</TableCell>
     <TableCell align="right">{row.user_password}</TableCell>
     </TableRow>
-    <TableRow>
+    <TableRow sx={{ backgroundColor: '#f5f5f5' }}>
     <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
     <Collapse in={open} timeout="auto" unmountOnExit>
     <Box sx={{ margin: 1 }}>
@@ -80,7 +82,10 @@ function createData(userId, user_name, user_email, user_password, courses, total
     <TableCell>{historyRow.finish_date}</TableCell>
     <TableCell align="right">{historyRow.courses}</TableCell>
     <TableCell align="right">
-    {historyRow.total_points}
+      
+{/* grade - progress */}
+
+    {Math.round(historyRow.total_points * row.user_point * 100) / row.max_point}
     </TableCell>
     </TableRow>
     ))}

@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import { Link } from 'react-router-dom';
-import { Card, CardHeader, Table, TableContainer, TableHead, TableRow, TableCell, TableBody, IconButton, Paper, Typography, Button} from '@mui/material';
+import { Card, Table, TableContainer, TableHead, TableRow, TableCell, TableBody, IconButton, Paper, Typography, Button} from '@mui/material';
 import { Edit, Delete } from '@mui/icons-material';
 import Swal from 'sweetalert2';
 
-const url = 'http://localhost:8000/api';
+import { getCourses, deleteCourse} from './../../../services/apiService';
 
 const ListCourseProtected = () => {
   const [courses, setCourses] = useState([]);
@@ -15,11 +14,11 @@ const ListCourseProtected = () => {
   }, []);
 
   const getAllCourses = async () => {
-    const response = await axios.get(`${url}/courses`);
-    setCourses(response.data);
+    const response = await getCourses();
+    setCourses(response);
   };
 
-  const deleteCourse = async (id) => {
+  const habdleDeleteCourse = async (id) => {
     Swal.fire({
       title: 'Are you sure?',
       text: "You won't be able to revert this!",
@@ -31,7 +30,7 @@ const ListCourseProtected = () => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          const response = await axios.delete(`${url}/courses/${id}`);
+          const response = await deleteCourse(id);
           if (response.status === 200) {
             Swal.fire('Deleted!', 'Your file has been deleted.', 'success');
             setCourses(courses.filter((course) => course.id !== id));
@@ -90,7 +89,7 @@ const ListCourseProtected = () => {
                       <Edit />
                     </IconButton>
                   </Link>
-                  <IconButton color="error" onClick={() => deleteCourse(course.id)}>
+                  <IconButton color="error" onClick={() => habdleDeleteCourse(course.id)}>
                     <Delete />
                   </IconButton>
                 </TableCell>

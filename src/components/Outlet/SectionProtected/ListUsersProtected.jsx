@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { Table, TableContainer, TableHead, TableRow, TableCell, TableBody, IconButton, Paper, Typography, Button} from '@mui/material';
 import { Edit, Delete } from '@mui/icons-material';
 import Swal from 'sweetalert2';
 
-const url = 'http://localhost:8000/api';
+
+import { getUsers, deleteUser } from './../../../services/apiService';
+
 
 const ListUsersProtected = () => {
   const [users, setUsers] = useState([]);
@@ -15,11 +16,11 @@ const ListUsersProtected = () => {
   }, []);
 
   const getAllUsers = async () => {
-    const response = await axios.get(`${url}/users`);
-    setUsers(response.data);
-  };
+    const response = await getUsers();
+    setUsers(response);
+    };
 
-  const deleteUser = async (id) => {
+  const handleDeleteUser = async (id) => {
     Swal.fire({
       title: 'Are you sure?',
       text: "You won't be able to revert this!",
@@ -31,7 +32,7 @@ const ListUsersProtected = () => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          const response = await axios.delete(`${url}/users/${id}`);
+          const response = await deleteUser(id);
           if (response.status === 200) {
             Swal.fire('Deleted!', 'Your file has been deleted.', 'success');
             setUsers(users.filter((user) => user.id !== id));
@@ -81,7 +82,7 @@ const ListUsersProtected = () => {
                       <Edit />
                     </IconButton>
                   </Link>
-                  <IconButton color="error" onClick={() => deleteUser(user.id)}>
+                  <IconButton color="error" onClick={() => handleDeleteUser(user.id)}>
                     <Delete />
                   </IconButton>
                 </TableCell>
