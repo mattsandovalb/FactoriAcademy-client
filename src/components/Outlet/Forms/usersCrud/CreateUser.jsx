@@ -34,7 +34,7 @@ const CreateUser = () => {
             'Content-Type': 'multipart/form-data'
           }
         }).then(() => {
-          navigate('/coursesprotected');
+          navigate('/usersprotected');
           Swal.fire('Created!', '', 'success');
         }).catch((error) => {
           Swal.fire('Error', error.message, 'error');

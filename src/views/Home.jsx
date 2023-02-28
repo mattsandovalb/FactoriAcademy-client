@@ -11,7 +11,8 @@ function Home() {
    <Navbar/>
         <Container sx={{ p: 2 }}>
         <Typography  variant="h1" component="h1" sx={{ p: 2 }} >FACTORIA ACADEMY</Typography>
-        <ViewCourses/>
+          
+          <ViewCourses/>
         </Container>
   </>
    

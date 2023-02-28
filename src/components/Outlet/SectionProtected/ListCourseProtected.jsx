@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import { Table, TableContainer, TableHead, TableRow, TableCell, TableBody, IconButton, Paper, Typography, Button} from '@mui/material';
+import { Card, CardHeader, Table, TableContainer, TableHead, TableRow, TableCell, TableBody, IconButton, Paper, Typography, Button} from '@mui/material';
 import { Edit, Delete } from '@mui/icons-material';
 import Swal from 'sweetalert2';
 
@@ -48,17 +48,20 @@ const ListCourseProtected = () => {
 
   return (
     <>
-      <TableContainer component={Paper} sx={{ p: 1}}>
+      <TableContainer  component={Paper} sx={{ p: 1}}>
         <Typography variant="h1" component="h2" sx={{ p: 3 }}>
           Courses
         </Typography>
-        <Button variant="contained" color="primary">
+        <Button variant="contained" color="primary" sx={{p:1, mb: 3}}>
        <Link to="/courses/create" sx={{ color: 'white', textDecoration: 'none' }}>
        Create New Course
       </Link> 
     </Button>
-        <Table>
-          <TableHead>
+    <Card>
+     
+        <Table stickyHeader aria-label="sticky table">
+      
+          <TableHead >
             <TableRow>
               <TableCell>ID</TableCell>
               <TableCell>Title</TableCell>
@@ -69,18 +72,19 @@ const ListCourseProtected = () => {
               <TableCell>ACTION</TableCell>
             </TableRow>
           </TableHead>
+       
           <TableBody>
             {courses.map((course) => (
-              <TableRow key={course.id}>
-                <TableCell>{course.id}</TableCell>
-                <TableCell>{course.title}</TableCell>
-                <TableCell>{course.description}</TableCell>
-                <TableCell>{course.tech}</TableCell>
-                <TableCell>
+              <TableRow key={course.id} sx={{}}>
+                <TableCell  sx={{p:1 }}>{course.id}</TableCell>
+                <TableCell sx={{p:1 }}>{course.title}</TableCell>
+                <TableCell sx={{p:1 }}>{course.description}</TableCell>
+                <TableCell sx={{p:1 }}>{course.tech}</TableCell>
+                <TableCell sx={{p:1 }}>
                   <img src={`http://localhost:8000/images/poster/${course.poster}`} alt={course.title} height={60} />
                 </TableCell>
-                <TableCell>{course.level}</TableCell>
-                <TableCell>
+                <TableCell sx={{p:1 }}>{course.level }</TableCell>
+                <TableCell sx={{p:1 }}>
                   <Link to={`/courses/${course.id}/edit`}>
                     <IconButton color="primary">
                       <Edit />
@@ -94,6 +98,7 @@ const ListCourseProtected = () => {
             ))}
           </TableBody>
         </Table>
+        </Card>
       </TableContainer>
     </>
   );

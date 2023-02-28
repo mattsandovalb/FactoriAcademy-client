@@ -57,14 +57,14 @@ const ListUsersProtected = () => {
        Create New USER 
       </Link> 
     </Button>
-        <Table>
+    <Table aria-label="collapsible table">
           <TableHead>
             <TableRow>
-              <TableCell>ID</TableCell>
-              <TableCell>Name</TableCell>
-              <TableCell>E-Mail</TableCell>
-              <TableCell>Password</TableCell>
-              <TableCell>Role</TableCell>
+              <TableCell  align="right">ID</TableCell>
+              <TableCell  align="right">Name</TableCell>
+              <TableCell  align="right">E-Mail</TableCell>
+              <TableCell  align="right">Password</TableCell>
+              <TableCell >Role</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>

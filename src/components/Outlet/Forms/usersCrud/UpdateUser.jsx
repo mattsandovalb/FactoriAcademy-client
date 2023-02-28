@@ -53,7 +53,7 @@ const UpdateUser = () => {
                   'Content-Type': 'multipart/form-data'
                 }
       }).then(() => {
-        navigate('/coursesprotected');
+        navigate('/usersprotected');
         Swal.fire('Updated!', '', 'success');
       }).catch((error) => {
         Swal.fire('Error', error.message, 'error');
@@ -63,57 +63,57 @@ const UpdateUser = () => {
     }
   });
 };
-
 return (
   <Container maxWidth="sm">
   <Box sx={{ mt: 5 }}>
   <Typography variant="h1" component="h2">
-        Update USER
-      </Typography>
-      <FormControl fullWidth sx={{ m: 1 }} onSubmit={handleUpdate}>
-      <Typography  variant="h4" component="h2"> NAME </Typography>
-
-        <TextField
-          fullWidth
-          label="name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          margin="normal"
-          required
-        />
-        <Typography  variant="h4" component="h2"> Description </Typography>
-        <TextField
-          fullWidth
-          label="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          margin="normal"
-          required
-        />
-       <Typography  variant="h4" component="h2"> Tech </Typography>
-        <TextField
-          fullWidth
-          label="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          margin="normal"
-          required
-        />
-        <Typography  variant="h4" component="h2"> Level </Typography>    
-        <TextField
-          fullWidth
-          label="role"
-          value={role}
-          onChange={(e) => setRole(e.target.value)}
-          margin="normal"
-          required
-        />
-          <Button variant="contained" type="submit" onClick={handleUpdate}>
-            Save
-          </Button>
-          <Button variant="outlined"><Link to="/coursesprotected">Cancel</Link></Button>
-</FormControl>
-    </Box>
+  Update USER
+  </Typography>
+  <FormControl fullWidth sx={{ m: 1 }} onSubmit={handleUpdate}>
+  <Typography  variant="h4" component="h2"> NAME </Typography>
+  <TextField
+  fullWidth
+  label="name"
+  value={name}
+  onChange={(e) => setName(e.target.value)}
+  margin="normal"
+  required
+  />
+  <Typography  variant="h4" component="h2"> E - mail </Typography>
+  <TextField
+  fullWidth
+  label="email"
+  value={email}
+  onChange={(e) => setEmail(e.target.value)}
+  margin="normal"
+  required
+  />
+  <Typography  variant="h4" component="h2"> Password </Typography>
+  <TextField
+  fullWidth
+  label="password"
+  value={password}
+  onChange={(e) => setPassword(e.target.value)}
+  margin="normal"
+  required
+  />
+  <Typography  variant="h4" component="h2"> Role </Typography>
+  <TextField
+  fullWidth
+  label="role"
+  value={role}
+  onChange={(e) => setRole(e.target.value)}
+  margin="normal"
+  required
+  />
+  <Button variant="contained" type="submit">
+  Save
+  </Button>
+  <Button variant="outlined">
+  <Link to="/usersprotected">Cancel</Link>
+  </Button>
+  </FormControl>
+  </Box>
   </Container>
 );
 }
