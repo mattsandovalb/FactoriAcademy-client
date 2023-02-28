@@ -1,198 +1,157 @@
 import * as React from 'react';
-import { useState } from 'react';
+import { styled, createTheme, ThemeProvider } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
+import MuiDrawer from '@mui/material/Drawer';
+import Box from '@mui/material/Box';
+import MuiAppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import List from '@mui/material/List';
+import Typography from '@mui/material/Typography';
+import Divider from '@mui/material/Divider';
+import IconButton from '@mui/material/IconButton';
+import Badge from '@mui/material/Badge';
+import Container from '@mui/material/Container';
+import Grid from '@mui/material/Grid';
+import Paper from '@mui/material/Paper';
+import Link from '@mui/material/Link';
+import MenuIcon from '@mui/icons-material/Menu';
+import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
+import NotificationsIcon from '@mui/icons-material/Notifications';
+import { mainListItems, secondaryListItems } from '../components/ListItems';
+import Chart from '../components/Chart';
+import Deposits from '../components/Deposits';
+import Orders from '../components/Orders';
 
-import { Drawer,Box, AppBar, Toolbar, List, ListItem, ListItemIcon, ListItemText, Typography, IconButton, Menu, MenuItem, Container, Avatar, Button, Tooltip } from '@mui/material';
-import { Menu as MenuIcon, Search as SearchIcon, Logout as LogoutIcon } from '@mui/icons-material';
+
+
+//---------------------------------------Funciones varias----------------------------------------------------//
+function Copyright(props) {
+  return (
+    <Typography variant="body2" color="text.secondary" align="center" {...props}>
+      {'Copyright © '}
+      <Link color="inherit" href="https://mui.com/">
+        Your Website
+      </Link>{' '}
+      {new Date().getFullYear()}
+      {'.'}
+    </Typography>
+  );
+}
 
 const drawerWidth = 240;
-
-const MainContainer = ({ children }) => (
-  <Box sx={{ display: 'flex' }}>
-    {children}
-  </Box>
-);
-
-const MainContent = ({ children }) => (
-  <Box sx={{ flexGrow: 1, padding: 3 }}>
-    {children}
-  </Box>
-);
-
-const Sidebar = ({ children }) => (
-  <Drawer
-    sx={{
+//-------------------------------------------Necesario para la Barra arriba-----------------------------------//
+const AppBar = styled(MuiAppBar, {
+  shouldForwardProp: (prop) => prop !== 'open',
+})(({ theme, open }) => ({
+  zIndex: theme.zIndex.drawer + 1,
+  transition: theme.transitions.create(['width', 'margin'], {
+    easing: theme.transitions.easing.sharp,
+    duration: theme.transitions.duration.leavingScreen,
+  }),
+  ...(open && {
+    marginLeft: drawerWidth,
+    width: `calc(100% - ${drawerWidth}px)`,
+    transition: theme.transitions.create(['width', 'margin'], {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.enteringScreen,
+    }),
+  }),
+}));
+//-------------------------------------Necesario para la Barra Izquierda-------------------------------------------//
+const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(
+  ({ theme, open }) => ({
+    '& .MuiDrawer-paper': {
+      position: 'relative',
+      whiteSpace: 'nowrap',
       width: drawerWidth,
-      flexShrink: 0,
-      '& .MuiDrawer-paper': {
-        width: drawerWidth,
-        boxSizing: 'border-box',
-      },
-    }}
-  >
-    {children}
-  </Drawer>
+      transition: theme.transitions.create('width', {
+        easing: theme.transitions.easing.sharp,
+        duration: theme.transitions.duration.enteringScreen,
+      }),
+      boxSizing: 'border-box',
+      ...(!open && {
+        overflowX: 'hidden',
+        transition: theme.transitions.create('width', {
+          easing: theme.transitions.easing.sharp,
+          duration: theme.transitions.duration.leavingScreen,
+        }),
+        width: theme.spacing(7),
+        [theme.breakpoints.up('sm')]: {
+          width: theme.spacing(9),
+        },
+      }),
+    },
+  }),
 );
 
-const Logo = () => (
-  <Typography
-    variant="h1"
-    sx={{
-      fontWeight: 'bold',
-      fontSize: '1.5rem',
-      lineHeight: '1.5rem',
-      textTransform: 'uppercase',
-      letterSpacing: '0.1em',
-      color: (theme) => theme.palette.primary.contrastText,
-    }}
-  >
-    Dashboard
-  </Typography>
-);
+const mdTheme = createTheme();
 
-const Navbar = ({ children }) => (
-  <AppBar
-    position="fixed"
-    sx={{
-      zIndex: (theme) => theme.zIndex.drawer + 1,
-    }}
-  >
-    <Toolbar>
-      {children}
-    </Toolbar>
-  </AppBar>
-);
-
-const ToolbarLeft = ({ children }) => (
-  <Toolbar sx={{ display: 'flex', alignItems: 'center' }}>
-    {children}
-  </Toolbar>
-);
-
-const ToolbarRight = ({ children }) => (
-  <Toolbar sx={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end' }}>
-    {children}
-  </Toolbar>
-);
-
-const SidebarHeader = ({ children }) => (
-  <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 2 }}>
-    {children}
-  </Box>
-);
-
-const SidebarFooter = ({ children }) => (
-  <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 2 }}>
-    {children}
-  </Box>
-);
-
-const AvatarContainer = ({ children }) => (
-  <Box sx={{ display: 'flex', alignItems: 'center' }}>
-    {children}
-  </Box>
-);
-
-const UserName = () => (
-  <Typography
-    sx={{
-      fontWeight: 'bold',
-      marginLeft: (theme) => theme.spacing(2),
-    }}
-  >
-    SUPER ADMIN
-  </Typography>
-);
-
-const Dashboard = () => {
-  const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [anchorEl, setAnchorEl] = useState(null);
-
-  const handleSidebarToggle = () => {
-    setSidebarOpen(!sidebarOpen);
+function DashboardContent() {
+  const [open, setOpen] = React.useState(true);
+  const toggleDrawer = () => {
+    setOpen(!open);
   };
-
-  const handleMenuOpen = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleMenuClose = () => {
-    setAnchorEl(null);
-  };
-
+//------------------------------------------------------------Codigo Principal---------------------------------------//
   return (
-    <MainContainer>
-      <Sidebar
-        variant="permanent"
-        anchor="left"
-        open={sidebarOpen}
-      >
-        <SidebarHeader>
-          <Logo>Dashboard</Logo>
-        </SidebarHeader>
-        <List>
-          <ListItem button>
-            <ListItemIcon>Admins</ListItemIcon>
-            <ListItemText primary="Admins" />
-          </ListItem>
-          <ListItem button>
-            <ListItemIcon>Courses</ListItemIcon>
-            <ListItemText primary="Courses" />
-          </ListItem>
-          <ListItem button>
-            <ListItemIcon>Users</ListItemIcon>
-            <ListItemText primary="Users" />
-          </ListItem>
-          <ListItem button>
-            <ListItemIcon>Exercicios</ListItemIcon>
-            <ListItemText primary="Exercicios" />
-          </ListItem>
-        </List>
-        <SidebarFooter>
-      <AvatarContainer>
-        <Avatar />
-        <UserName>SuperAdmin</UserName>
-      </AvatarContainer>
-    </SidebarFooter>
-  </Sidebar>
-  <MainContent>
-    <Navbar position="fixed">
-      <ToolbarLeft>
-        <IconButton
-          edge="start"
-          color="inherit"
-          aria-label="menu"
-          onClick={handleSidebarToggle}
+    <ThemeProvider theme={mdTheme}>
+      <Box sx={{ display: 'flex' }}>
+        <CssBaseline />
+        <Box
+          component="main"
+          sx={{
+            backgroundColor: (theme) =>
+              theme.palette.mode === 'light'
+                ? theme.palette.grey[100]
+                : theme.palette.grey[900],
+            flexGrow: 1,
+            height: '100vh',
+            overflow: 'auto',
+          }}
         >
-          <MenuIcon />
-        </IconButton>
-        <Logo>Dashboard</Logo>
-      </ToolbarLeft>
-      <ToolbarRight>
-        <IconButton color="inherit">
-          <SearchIcon />
-        </IconButton>
-        <Tooltip title="Logout">
-          <IconButton color="inherit" onClick={handleMenuOpen}>
-            <LogoutIcon />
-          </IconButton>
-        </Tooltip>
-        <Menu
-          anchorEl={anchorEl}
-          open={Boolean(anchorEl)}
-          onClose={handleMenuClose}
-        >
-          <MenuItem onClick={handleMenuClose}>Logout</MenuItem>
-        </Menu>
-      </ToolbarRight>
-    </Navbar>
-    <Container maxWidth="lg">
-      <Typography variant="h4" component="h1" gutterBottom>
-        Welcome, SuperAdmin!
-      </Typography>
-    </Container>
-  </MainContent>
-</MainContainer>
-);
-};
-export default Dashboard;
+          <Toolbar />
+          <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
+            <Grid container spacing={3}>
+              {/* Grid de las estadisticas superiores */}
+              <Grid item xs={12} md={8} lg={9}>      
+                <Paper
+                  sx={{
+                    p: 2,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    height: 240,
+                  }}
+                >
+                  <Chart />
+                </Paper>
+              </Grid>
+              {/* Grid del cuadrado superior derecho */}
+              <Grid item xs={12} md={4} lg={3}>
+                <Paper
+                  sx={{
+                    p: 2,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    height: 240,
+                  }}
+                >
+                  <Deposits />
+                </Paper>
+              </Grid>
+              {/* Grid de la barra inferior */}
+              <Grid item xs={12}>
+                <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
+                  <Orders />
+                </Paper>
+              </Grid>
+            </Grid>
+            <Copyright sx={{ pt: 4 }} />
+          </Container>
+        </Box>
+      </Box>
+    </ThemeProvider>
+  );
+}
 
+export default function Dashboard() {
+  return <DashboardContent />;
+}
