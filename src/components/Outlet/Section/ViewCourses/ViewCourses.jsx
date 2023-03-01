@@ -10,7 +10,7 @@ import {
   CardMedia,
 } from '@mui/material';
 
-import { getCourses } from '../../../services/apiService';
+import { getCourses } from '../../../../services/apiService';
 
 const ViewCourses = () => {
   const [courses, setCourses] = useState([]);

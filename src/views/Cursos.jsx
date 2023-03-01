@@ -1,20 +1,21 @@
 import React from 'react'
 import { Container, Typography } from '@mui/material'
 import Navbar from '../components/Layouts/Navbar/Navbar'
-import SignIn from './SignIn';
+import ViewCourses from '../components/Outlet/Section/ViewCourses/ViewCourses';
 
-function Home() {
+
+function Cursos() {
   
   return (
   <> 
    <Navbar/>
         <Container sx={{ p: 2 }}>
-        <Typography  variant="h1" component="h1" sx={{ p: 2 }} >FACTORIA ACADEMY</Typography>
-          <SignIn/>
+          <Typography  variant="h1" component="h1" sx={{ p: 5 }} >NUESTROS CURSOS</Typography>
+          <ViewCourses/>
         </Container>
   </>
    
   )
 }
 
-export default Home
+export default Cursos

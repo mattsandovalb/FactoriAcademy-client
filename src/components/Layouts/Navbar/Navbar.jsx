@@ -11,6 +11,7 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
+import { Link } from 'react-router-dom';
 
 
 const pages = ['Home', 'Cursos', 'Blog'];
@@ -34,17 +35,17 @@ function ResponsiveAppBar() {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
-
+/*  */
   return (
     <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters> 
-         
-          <Typography
+    
+         <Typography
             variant="h6"
             noWrap
             component="a"
-            href="/"
+            href="/home"
             sx={{
               mr: 2,
               display: { xs: 'none', md: 'flex' },
@@ -55,12 +56,14 @@ function ResponsiveAppBar() {
               textDecoration: 'none',
             }}
           >
-            FactoriaAcademy
-          </Typography>
+     FactoriACADEMIA
+          </Typography> 
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
               <Button key={page} sx={{ color: '#fff' }}>
-                {page}
+                <Link to={`/${page.toLowerCase()}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+            {page}
+        </Link>
               </Button>
             ))}
           </Box>
@@ -95,8 +98,10 @@ function ResponsiveAppBar() {
             >
               {pages.map((page) => (
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
-                </MenuItem>
+                   <Link to={`/${page.toLowerCase()}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+            {page}
+        </Link>
+                 </MenuItem>
               ))}
             </Menu>
           </Box>
@@ -126,7 +131,9 @@ function ResponsiveAppBar() {
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
-                {page}
+                <Link to={`/${page.toLowerCase()}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+            {page}
+        </Link>
               </Button>
             ))}
           </Box>

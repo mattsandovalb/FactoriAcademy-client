@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import {  InputAdornment, IconButton } from '@material-ui/core';
-import { Visibility, VisibilityOff } from '@material-ui/icons';
-import Avatar from '@mui/material/Avatar';
+import {  InputAdornment, IconButton } from '@mui/material';
+import { Visibility, VisibilityOff } from '@mui/icons-material';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
@@ -11,7 +10,6 @@ import Link from '@mui/material/Link';
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
@@ -19,9 +17,8 @@ function Copyright(props) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
       {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>{' '}
+      <Link color="inherit" href="https://factoriaf5.org/">
+FACTORIA F5  </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
     </Typography>
@@ -65,7 +62,7 @@ const boton = {
 
   return (
     <ThemeProvider theme={theme}>
-      <Grid container component="main" sx={{ height: '100vh' }}>
+      <Grid container component="main" sx={{ height: '80vh' }}>
         <CssBaseline />
         {/* Primer Grid para la imagen */}
         <Grid
@@ -74,11 +71,11 @@ const boton = {
           sm={4}
           md={7}
           sx={{
-            backgroundImage: `url(${process.env.PUBLIC_URL}/assets/estudio.jpg)`,
+           backgroundImage: `url(${process.env.PUBLIC_URL}/assets/factoria/coder.png)`,
             backgroundRepeat: 'no-repeat',
             backgroundColor: (t) =>
               t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
-            backgroundSize: 'cover',
+            backgroundSize: '80% auto',
             backgroundPosition: 'center',
           }}
         />

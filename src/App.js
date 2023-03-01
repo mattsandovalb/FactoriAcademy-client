@@ -10,8 +10,9 @@ import UpdateUser from './components/Outlet/Forms/usersCrud/UpdateUser.jsx';
 import Notfoundpage from './views/Notfoundpage.jsx';
 import ListCourseProtected from './components/Outlet/SectionProtected/ListCourseProtected.jsx';
 import ListUsersProtected from './components/Outlet/SectionProtected/ListUsersProtected.jsx';
-import AdminProfile from './views/AdminProfile.jsx';
+//import AdminProfile from './views/AdminProfile.jsx';
 import UserProfile from "./views/UserProfile.jsx"
+import Cursos from './views/Cursos.jsx';
 //import {RequiredAuth} from './hoc/RequireAuth';
 
 function App() {
@@ -19,13 +20,16 @@ function App() {
     <div>
       <BrowserRouter>
           <Routes>
+            <Route path='/home' element={<Home/>} />
             <Route path='/' element={<Home/>} />
+            <Route path='/cursos' element={<Cursos/>} />
             <Route path='*' element={<Notfoundpage/>} />
             <Route path='/user' element={<UserProfile/>} />
 
  {/*       <RequireAuth> */} 
              
-           <Route path='/admin' element={<AdminProfile/>} />
+          {/*  <Route path='/admin' element={<AdminProfile/>} /> */}
+          
              <Route path='/coursesprotected' element={<ListCourseProtected/>} />
              <Route path='/courses/create' element={<CreateCourse/>} />
              <Route path='/courses/:id/edit' element={<UpdateCourse/>}/>
