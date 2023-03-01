@@ -4,7 +4,7 @@ import { Route, BrowserRouter, Routes } from 'react-router-dom';
 import Home from './views/Home.jsx';
 import CreateCourse from './components/Outlet/Forms/coursesCRUD/CreateCourse.jsx';
 import UpdateCourse from './components/Outlet/Forms/coursesCRUD/UpdateCourse.jsx';
-import UserCourses from './components/Outlet/Section/UserCourses.jsx'
+import UserCourses from './components/Outlet/Section/UserCourses/UserCourses.jsx'
 import CreateUser from './components/Outlet/Forms/usersCrud/CreateUser.jsx';
 import UpdateUser from './components/Outlet/Forms/usersCrud/UpdateUser.jsx';
 import Notfoundpage from './views/Notfoundpage.jsx';
@@ -13,8 +13,7 @@ import ListUsersProtected from './components/Outlet/SectionProtected/ListUsersPr
 //import AdminProfile from './views/AdminProfile.jsx';
 import UserProfile from "./views/UserProfile.jsx"
 import Cursos from './views/Cursos.jsx';
-//import {RequiredAuth} from './hoc/RequireAuth';
-
+import DetailCourse from './views/DetailCourse.jsx';
 function App() {
   return (
     <div>
@@ -25,6 +24,7 @@ function App() {
             <Route path='/cursos' element={<Cursos/>} />
             <Route path='*' element={<Notfoundpage/>} />
             <Route path='/user' element={<UserProfile/>} />
+            <Route path='/courses/:id' element={<DetailCourse/>} />
 
  {/*       <RequireAuth> */} 
              

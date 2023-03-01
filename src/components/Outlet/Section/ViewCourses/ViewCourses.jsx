@@ -9,7 +9,7 @@ import {
   CardActions,
   CardMedia,
 } from '@mui/material';
-
+import {Link} from 'react-router-dom';
 import { getCourses } from '../../../../services/apiService';
 
 const ViewCourses = () => {
@@ -50,7 +50,7 @@ const ViewCourses = () => {
                 </Typography>
               </CardContent>
               <CardActions>
-                <Button color="primary" size="small">
+                <Button color="primary" size="small" component={Link} to={`/courses/${course.id}`} >
                   START COURSE
                 </Button>
               </CardActions>
