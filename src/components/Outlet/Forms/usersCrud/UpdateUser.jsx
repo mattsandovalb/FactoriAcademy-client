@@ -104,7 +104,7 @@ return (
   Save
   </Button>
   <Button variant="outlined">
-  <Link to="/usersprotected">Cancel</Link>
+  <Link to="/usersprotected" style={{ textDecoration: 'none', color: 'inherit' }}>Cancel</Link>
   </Button>
   </FormControl>
   </Box>

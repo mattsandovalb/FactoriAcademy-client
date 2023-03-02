@@ -126,7 +126,10 @@ const rows = [
 
 export default function CollapsibleTable() {
   return (
-    <TableContainer component={Paper}>
+    <TableContainer component={Paper} sx={{ pl: 30, pt:5}}>
+       <Typography variant="h1" component="h2" sx={{ p: 2}}>
+          User - Courses
+        </Typography>
       <Table aria-label="collapsible table">
         <TableHead>
           <TableRow>

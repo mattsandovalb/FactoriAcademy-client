@@ -94,7 +94,7 @@ return (
                       type="text"
                       InputLabelProps={{htmlFor: 'outlined-basic'}}
                       />
-       <Button variant="outlined"><Link to="/coursesprotected">Cancel</Link></Button>
+       <Button variant="outlined"><Link to="/coursesprotected" style={{ textDecoration: 'none', color: 'inherit' }}>Cancel</Link></Button>
       <Button type="submit" variant="contained" onClick={()=> navigate('/coursesprotected')}>UPDATE</Button>
 </FormControl>
 </Box>

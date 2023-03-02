@@ -12,10 +12,11 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import { Link } from 'react-router-dom';
+import logo from '../../../assets/factoria/logoblack.png'; 
 
 
 const pages = ['Home', 'Cursos', 'Blog'];
-const settings = ['Mi Perfil', 'Mis Cursos', 'Logout'];
+const settings = ['Admin', 'Mis Cursos', 'Logout'];
 
 function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -40,7 +41,7 @@ function ResponsiveAppBar() {
     <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters> 
-    
+
          <Typography
             variant="h6"
             noWrap
@@ -56,7 +57,7 @@ function ResponsiveAppBar() {
               textDecoration: 'none',
             }}
           >
-     FactoriACADEMIA
+  <img src={logo} alt="Logo" height="25" />
           </Typography> 
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
@@ -110,7 +111,7 @@ function ResponsiveAppBar() {
             variant="h5"
             noWrap
             component="a"
-            href=""
+            href="/"
             sx={{
               mr: 2,
               display: { xs: 'flex', md: 'none' },
@@ -122,7 +123,7 @@ function ResponsiveAppBar() {
               textDecoration: 'none',
             }}
           >
-            FactoriACADEMIA
+       <img src={logo} alt="Logo" height="25" />
           </Typography> 
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
@@ -137,7 +138,6 @@ function ResponsiveAppBar() {
               </Button>
             ))}
           </Box>
-
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
@@ -162,7 +162,9 @@ function ResponsiveAppBar() {
             >
               {settings.map((setting) => (
                 <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
+                  <Link to={`/${setting.toLowerCase()}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+            {setting}
+        </Link>
                 </MenuItem>
               ))}
             </Menu>

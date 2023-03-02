@@ -1,27 +1,30 @@
-import * as React from 'react';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { styled, createTheme, ThemeProvider } from '@mui/material/styles';
-import CssBaseline from '@mui/material/CssBaseline';
-import MuiDrawer from '@mui/material/Drawer';
-import Box from '@mui/material/Box';
-import MuiAppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
-import List from '@mui/material/List';
-import Typography from '@mui/material/Typography';
-import Divider from '@mui/material/Divider';
-import IconButton from '@mui/material/IconButton';
-import Badge from '@mui/material/Badge';
+import {
+CssBaseline,
+Drawer,
+Box,
+AppBar,
+Toolbar,
+List,
+Typography,
+Divider,
+IconButton,
+Badge,
+Link,
+Avatar, 
+} from '@mui/material';
+import {
+Menu as MenuIcon,
+ChevronLeft as ChevronLeftIcon,
+Notifications as NotificationsIcon
+} from '@mui/icons-material';
 
-import Link from '@mui/material/Link';
-import MenuIcon from '@mui/icons-material/Menu';
-import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import NotificationsIcon from '@mui/icons-material/Notifications';
-import { mainListItems, secondaryListItems } from '../components/ListItems';
-import Chart from '../components/adminComponents/Chart';
-import Deposits from '../components/adminComponents/Deposits';
-import Orders from '../components/adminComponents/Orders';
-import { Avatar } from '@mui/material';
-import Dashboard from '../components/Layouts/Navbar/Dashboard';
+import { mainListItems, secondaryListItems } from './ListItems';
+//import Chart from '../components/adminComponents/Chart';
+//import Deposits from '../components/adminComponents/Deposits';
+import Orders from './Orders';
+import Dashboard from '../Layouts/Navbar/Dashboard';
 
 
 
@@ -42,7 +45,7 @@ function Copyright(props) {
 
 const drawerWidth = 240;
 //-------------------------------------------Necesario para la Barra arriba-----------------------------------//
-const AppBar = styled(MuiAppBar, {
+/* const AppBar = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== 'open',
 })(({ theme, open }) => ({
   zIndex: theme.zIndex.drawer + 1,
@@ -58,8 +61,7 @@ const AppBar = styled(MuiAppBar, {
       duration: theme.transitions.duration.enteringScreen,
     }),
   }),
-}));
-//-------------------------------------Necesario para la Barra Izquierda-------------------------------------------//
+})); 
 const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(
   ({ theme, open }) => ({
     '& .MuiDrawer-paper': {
@@ -99,7 +101,7 @@ function DashboardUserContent() {
     <ThemeProvider theme={mdTheme}>
       <Box sx={{ display: 'flex' }}>
         <CssBaseline />
-{/* Barra superior */}
+{/* Barra superior */
         <AppBar position="absolute" open={open}
         color="secondary">
         <Toolbar
@@ -165,15 +167,14 @@ function DashboardUserContent() {
             {secondaryListItems}
           </List>
         </Drawer>
-                                                {/* Fin de la barra lateral */}
+                                              
 
         {active === "Dashboard" && <Dashboard/>}
         {active === "Orders" && <Orders/>}
-      </Box>
-    </ThemeProvider>
-  );
-}
 
+
+  
+        
 export default function UserProfile() {
   return <DashboardUserContent />;
 }

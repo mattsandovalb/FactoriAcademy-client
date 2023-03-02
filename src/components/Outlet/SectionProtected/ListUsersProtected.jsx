@@ -49,12 +49,12 @@ const ListUsersProtected = () => {
 
   return (
     <>
-      <TableContainer component={Paper} sx={{ p: 1}}>
-        <Typography variant="h1" component="h2" sx={{ p: 3 }}>
+      <TableContainer component={Paper}  sx={{ pl: 30, pt:5}}>
+        <Typography variant="h1" component="h2" sx={{ p: 2 }}>
           USERS
         </Typography>
         <Button variant="contained" color="primary">
-       <Link to="/users/create" sx={{ color: 'white', textDecoration: 'none' }}>
+       <Link to="/users/create" style={{ textDecoration: 'none', color: 'inherit' }}>
        Create New USER 
       </Link> 
     </Button>

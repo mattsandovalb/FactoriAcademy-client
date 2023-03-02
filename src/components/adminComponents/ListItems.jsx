@@ -1,15 +1,10 @@
 import * as React from 'react';
 import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemIcon from '@mui/material/Icon';
 import ListItemText from '@mui/material/ListItemText';
 import ListSubheader from '@mui/material/ListSubheader';
-import DashboardIcon from '@mui/icons-material/Dashboard';
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import PeopleIcon from '@mui/icons-material/People';
-import BarChartIcon from '@mui/icons-material/BarChart';
-import LayersIcon from '@mui/icons-material/Layers';
-import CommentIcon from '@mui/icons-material/Comment';
-import { Chat } from '@material-ui/icons';
+
+import { Chat, DashboardIcon, PeopleIcon, BarChartIcon, LayersIcon, CommentIcon } from '@mui/material/Icon';
 
 export const mainListItems = (
   <React.Fragment>

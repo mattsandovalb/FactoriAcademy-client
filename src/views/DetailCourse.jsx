@@ -4,7 +4,7 @@ import { getCourseById} from '../services/apiService';
 //import CourseItem from '../components/Outlet/Section/CourseItem/CourseItem';
 import { Typography, Container } from '@mui/material';
 import Task1 from '../components/ace/Task1/Task1';
-import Task from '../components/ace/Task/Task'
+//import Task from '../components/ace/Task/Task'
 import Navbar from '../components/Layouts/Navbar/Navbar'
 
 

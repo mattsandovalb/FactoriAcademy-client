@@ -85,7 +85,7 @@ const CreateUser = () => {
           <Button variant="contained" type="submit" onClick={handleSubmit}>
             Create
           </Button>
-          <Button variant="outlined"><Link to="/usersprotected">Cancel</Link></Button>
+          <Button variant="outlined"><Link to="/usersprotected" style={{ textDecoration: 'none', color: 'inherit' }}>Cancel</Link></Button>
         </FormControl>
       </Box>
     </Container>

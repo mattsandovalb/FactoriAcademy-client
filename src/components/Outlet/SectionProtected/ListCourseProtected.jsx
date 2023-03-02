@@ -47,12 +47,12 @@ const ListCourseProtected = () => {
 
   return (
     <>
-      <TableContainer  component={Paper} sx={{ p: 1}}>
-        <Typography variant="h1" component="h2" sx={{ p: 3 }}>
+      <TableContainer  component={Paper} sx={{ pl: 30, pt:5}} >
+        <Typography variant="h1" component="h2" sx={{ p: 2}}>
           Courses
         </Typography>
         <Button variant="contained" color="primary" sx={{p:1, mb: 3}}>
-       <Link to="/courses/create" sx={{ color: 'white', textDecoration: 'none' }}>
+       <Link to="/courses/create" style={{ textDecoration: 'none', color: 'inherit' }}>
        Create New Course
       </Link> 
     </Button>

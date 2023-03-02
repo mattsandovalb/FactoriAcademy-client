@@ -73,7 +73,7 @@ const CreateCourse = () => {
                         value={poster} 
                         onChange={(e)=> setPoster(e.target.value)} 
                         type="text" />
-                    <Button variant="outlined"><Link to="/coursesprotected">Cancel</Link></Button>
+                    <Button variant="outlined"><Link to="/coursesprotected" style={{ textDecoration: 'none', color: 'inherit' }}>Cancel</Link></Button>
                     <Button type="submit" variant="contained" onClick={handleSave}>SAVE</Button>
             </FormControl>
     
