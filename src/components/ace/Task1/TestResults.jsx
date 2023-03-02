@@ -1,4 +1,5 @@
 import React from "react";
+import {Typography} from '@mui/material'
 
 function TestResults(props) {
   const { tests } = props;
@@ -9,10 +10,10 @@ function TestResults(props) {
   return (
     <div>
       {allTestsPassed ? (
-        <p>Congratulations, you passed all tests!</p>
+        <Typography variant = 'h3'>Congratulations, you passed all tests!</Typography>
       ) : (
         <div>
-          <p>Sorry, you need to fix the following tests:</p>
+          <Typography variand = 'h4' >Sorry, you need to fix the following tests:</Typography>
           <ul>
             {tests.map((test) => (
               <li key={test.name}>

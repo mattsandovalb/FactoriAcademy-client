@@ -7,7 +7,7 @@ import { Box, Typography, Button } from '@mui/material';
 import TestResults from "./TestResults";
 
 const Task1 = () => {
-  const [editorValue, setEditorValue] = useState('<html>\n<head>\n<title>Hello World!</title>\n</head>\n<body>\n<h1>Hello World!</h1>\n<h1>Movies</h1>\n<h2>My Top 3 Movies:</h2>\n<ol>\n<li>Amadeus</li>\n<li>Stand By Me</li>\n<li>Amelie</li></ol>\n<h2>Other Good Movies:</h2>\n<ul>\n<li>Alien</li>\n<li>Parasite</li>\n<li>Annie Hall</li>\n</ul>\n</body>\n</html>');
+  const [editorValue, setEditorValue] = useState('');
   const [tests, setTests] = useState([]);
 
   const onEditorChange = (newValue) => {
@@ -38,29 +38,36 @@ const Task1 = () => {
   }
 
   return (
-    <Box sx={{ p: '16px' }}>
-      <Typography variant="h1" component="h1" sx={{  padding: '16px' }}>HTML</Typography>
-      <Typography variant="h3" sx={{ marginBottom: { xs: '8px', md: '16px' } }}>Description</Typography>
-      <Typography variant="body1">Favorite Movies Exercises
-        It's time to practice working with ordered and unordered lists. In the index.html file, you will find some existing markup. Please add on to the markup to recreate the two lists in the following image. 
-      </Typography>
-      <Typography variant="h3" sx={{ marginBottom: { xs: '8px', md: '16px' } }}>Your Solution</Typography>
-      <AceEditor
-        mode="html"
-        theme="github"
-        name="html-editor"
-        width="100%"
-        height="500px"
-        editorProps={{ $blockScrolling: true }}
-        value={editorValue}
-        onChange={onEditorChange}
-        sx={{ marginBottom: '16px' }}
-      />
-       <Button variant="contained" sx={{ m: '16px' }} onClick={onTestClick}>SEE RESULT</Button>
-      <Button variant="contained" onClick={runTests}>Run Tests</Button>
-      <TestResults tests={tests} />
-      <iframe id="test-output" title="Test Output" width="100%" height="500px"></iframe>
-    </Box>
+  <Box sx={{ p: '16px', display: 'flex', flexDirection: { xs: 'column', md: 'row' } }}>
+  <Box sx={{ flex: '1', padding: '16px' }}>
+    <Typography variant="h1" component="h1" sx={{ padding: '16px' }}>HTML</Typography>
+    <Typography variant="h3" sx={{ marginBottom: { xs: '8px', md: '16px' } }}>Description</Typography>
+    <Typography variant="body1">HELLO WORLD Exercises
+      It's time to practice working with HTML. Please add on to the markup to recreate the two words 
+      Hello World 
+    </Typography>
+  </Box>
+  <Box sx={{ flex: '1', padding: '16px' }}>
+    <Typography variant="h3" sx={{ marginBottom: { xs: '8px', md: '16px' } }}>WRITE YOUR CODE HERE</Typography>
+    <AceEditor
+      mode="html"
+      theme="github"
+      name="html-editor"
+      width="100%"
+      height="400px"
+      editorProps={{ $blockScrolling: true }}
+      value={editorValue}
+      onChange={onEditorChange}
+      sx={{ marginBottom: '16px', bgcolor: 'gray', color: 'white' }}
+    />
+    <Button variant="contained" sx={{ m: '16px' }} onClick={onTestClick}>SEE RESULT</Button>
+  </Box>
+  <Box sx={{ flex: '1', padding: '16px', display: { xs: 'none', md: 'block' } }}>
+    <Button variant="contained" onClick={runTests}>Run Tests</Button>
+    <TestResults tests={tests} />
+    <iframe id="test-output" title="Test Output" width="100%" height="400px" style={{ backgroundColor: 'darkgray' }}></iframe>
+  </Box>
+</Box>
   );
 };
 

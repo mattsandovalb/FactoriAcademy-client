@@ -38,12 +38,12 @@ function ResponsiveAppBar() {
   };
 /*  */
   return (
-    <AppBar position="static">
+    <AppBar position="static" >
       <Container maxWidth="xl">
         <Toolbar disableGutters> 
 
          <Typography
-            variant="h6"
+            variant="h5"
             noWrap
             component="a"
             href="/home"
@@ -130,7 +130,7 @@ function ResponsiveAppBar() {
               <Button
                 key={page}
                 onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
+                sx={{ my: 2, color: 'white', display: 'block', fontSize: '32px'}}
               >
                 <Link to={`/${page.toLowerCase()}`} style={{ textDecoration: 'none', color: 'inherit' }}>
             {page}
