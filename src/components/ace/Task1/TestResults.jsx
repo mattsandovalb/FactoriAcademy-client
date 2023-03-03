@@ -9,11 +9,12 @@ function TestResults(props) {
 
   return (
     <div>
-      {allTestsPassed ? (
-        <Typography variant = 'h3'>Congratulations, you passed all tests!</Typography>
-      ) : (
+      {allTestsPassed && (
+        <Typography variant='h3'>Congratulations, you passed all tests!</Typography>
+      )}
+      {!allTestsPassed && (
         <div>
-          <Typography variand = 'h4' >Sorry, you need to fix the following tests:</Typography>
+          <Typography variant='h3'>Sorry, you need to fix the following tests:</Typography>
           <ul>
             {tests.map((test) => (
               <li key={test.name}>

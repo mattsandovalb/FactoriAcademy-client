@@ -60,12 +60,13 @@ const Task1 = () => {
       onChange={onEditorChange}
       sx={{ marginBottom: '16px', bgcolor: 'gray', color: 'white' }}
     />
-    <Button variant="contained" sx={{ m: '16px' }} onClick={onTestClick}>SEE RESULT</Button>
+    <Button variant="contained" sx={{ m: '16px',  }} onClick={onTestClick}>SEE RESULT</Button>
   </Box>
   <Box sx={{ flex: '1', padding: '16px', display: { xs: 'none', md: 'block' } }}>
-    <Button variant="contained" onClick={runTests}>Run Tests</Button>
     <TestResults tests={tests} />
-    <iframe id="test-output" title="Test Output" width="100%" height="400px" style={{ backgroundColor: 'darkgray' }}></iframe>
+    <iframe id="test-output" title="Test Output" width="100%" height="380px" style={{ backgroundColor: 'darkgray' }}></iframe>
+    <Button variant="contained" onClick={runTests}>Run Tests</Button>
+
   </Box>
 </Box>
   );
