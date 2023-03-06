@@ -110,11 +110,13 @@ export default function DashAdmin() {
               button
               key="Tasks"
               sx={{ '&.active': { bgcolor: 'primary.light' } }}
+              component={Link}
+              to="/taskprotected"
             >
 <ListItemIcon sx={{ color: '#FF4700' }}>
                 <AssignmentIcon />
               </ListItemIcon>
-              <ListItemText primary={<Typography fontWeight="bold">Tasks</Typography>} />
+              <ListItemText primary={<Typography fontWeight="bold">Exercices</Typography>} />
             </ListItem>
           </List>
           <Divider />

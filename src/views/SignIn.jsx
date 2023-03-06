@@ -12,6 +12,7 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import logo from '../assets/factoria/logoblack.png'; 
 
 function Copyright(props) {
   return (
@@ -90,10 +91,24 @@ const boton = {
               alignItems: 'center',
             }}
           >
-            <Typography component="h5" variant='h4'>
-            FactoriAcademy
-            </Typography>
-            <Typography component="h5" variant='h6'>
+             <Typography
+            variant="h5"
+            noWrap
+            component="a"
+            href="/home"
+            sx={{
+              mr: 2,
+              display: { xs: 'none', md: 'flex' },
+              fontFamily: 'monospace',
+              fontWeight: 700,
+              letterSpacing: '.3rem',
+              color: 'inherit',
+              textDecoration: 'none',
+            }}
+          >
+  <img src={logo} alt="Logo" height="30" />
+          </Typography> 
+            <Typography variant='body1'>
               Powered by Factoria F5
             </Typography>
             <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>

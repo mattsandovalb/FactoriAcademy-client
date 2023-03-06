@@ -6,6 +6,14 @@ import Swal from 'sweetalert2';
 
 import { getCourses, deleteCourse} from './../../../services/apiService';
 
+import logocss from '../../../assets/courses/css.jpg'; 
+import logohtml from '../../../assets/courses/html.png'; 
+import logofactoria from '../../../assets/courses/factoria.jpg'; 
+import logojs from '../../../assets/courses/js.png'; 
+import logophp from '../../../assets/courses/php.png'; 
+
+const logos = [logohtml, logocss, logofactoria, logojs, logophp];
+
 const ListCourseProtected = () => {
   const [courses, setCourses] = useState([]);
 
@@ -80,7 +88,7 @@ const ListCourseProtected = () => {
                 <TableCell sx={{p:1 }}>{course.description}</TableCell>
                 <TableCell sx={{p:1 }}>{course.tech}</TableCell>
                 <TableCell sx={{p:1 }}>
-                  <img src={`http://localhost:8000/images/poster/${course.poster}`} alt={course.title} height={60} />
+                  <img src={logos[Math.floor(Math.random() * logos.length)]}  alt={course.title} height={60} />
                 </TableCell>
                 <TableCell sx={{p:1 }}>{course.level }</TableCell>
                 <TableCell sx={{p:1 }}>

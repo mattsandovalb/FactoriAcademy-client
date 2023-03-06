@@ -1,93 +1,79 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import AceEditor from 'react-ace';
 import 'ace-builds/src-noconflict/mode-html';
 import 'ace-builds/src-noconflict/theme-github';
+import { Box, Typography, Button } from '@mui/material';
 
-const Task = ({ taskId }) => {
-  const [title, setTitle] = useState('');
-  const [description, setDescription] = useState('');
-  const [testCases, setTestCases] = useState([]);
+import TestResults from "./TestResults";
+
+const Task1 = () => {
   const [editorValue, setEditorValue] = useState('');
-
-  useEffect(() => {
-    fetch(`http://localhost:8000/api/tasks/${taskId}`)
-      .then((response) => response.json())
-      .then((data) => {
-        setTitle(data.title);
-        setDescription(data.description);
-        setTestCases(data.testCases);
-      })
-      .catch((error) => console.error(error));
-  }, [taskId]);
+  const [tests, setTests] = useState([]);
 
   const onEditorChange = (newValue) => {
     setEditorValue(newValue);
   };
 
-  const runTests = () => {
-    const results = testCases.map((testCase) => {
-      try {
-        eval(`${editorValue}\n${testCase.test}`);
-        return { testCase, passed: true };
-      } catch (error) {
-        return { testCase, passed: false, error };
-      }
-    });
-
-    return results;
-  };
-
-  const renderResult = (result) => {
-    if (result.passed) {
-      return <span style={{ color: 'green' }}>Passed</span>;
-    } else {
-      return (
-        <div>
-          <span style={{ color: 'red' }}>Failed</span>
-          <br />
-          {result.error.toString()}
-        </div>
-      );
-    }
-  };
-
   const onTestClick = () => {
-    const testResults = runTests();
-    const testOutput = document.getElementById('test-output');
-    testOutput.innerHTML = '';
-    testResults.forEach((result) => {
-      const resultElement = document.createElement('div');
-      const descriptionElement = document.createElement('h4');
-      const testCodeElement = document.createElement('pre');
-      const resultText = renderResult(result);
-      descriptionElement.innerText = result.testCase.description;
-      testCodeElement.innerText = result.testCase.test;
-      resultElement.appendChild(descriptionElement);
-      resultElement.appendChild(testCodeElement);
-      resultElement.appendChild(resultText);
-      testOutput.appendChild(resultElement);
-    });
+    const iframe = document.getElementById('test-output');
+    iframe.srcdoc = editorValue;
   };
+
+  function runTests() {
+    const h1Regex = /<h1>Hello World<\/h1>/;
+
+    
+    const passed = h1Regex.test(editorValue);
+
+    
+    const tests = [
+      {
+        name: "Contains <h1>Hello World</h1>",
+        passed: passed,
+        error: passed ? "" : "Expected <h1>Hello World</h1> tag was not found",
+      },
+    ];
+
+    setTests(tests);
+  }
 
   return (
-    <div>
-      <h2>{title}</h2>
-      <p>{description}</p>
-      <h2>Your Solution</h2>
-      <AceEditor
-        mode="html"
-        theme="github"
-        name="html-editor"
-        width="100%"
-        height="500px"
-        value={editorValue}
-        onChange={onEditorChange}
-      />
-      <button onClick={onTestClick}>Test</button>
-      <h2>Test Results</h2>
-      <div id="test-output"></div>
-    </div>
+  <Box sx={{ p: '16px', display: 'flex', flexDirection: { xs: 'column', md: 'row' } }}>
+  <Box sx={{ flex: '1', padding: '16px' }}>
+    <Typography variant="h1" component="h1" sx={{ padding: '16px' }}>HTML</Typography>
+    <Typography variant="h3" sx={{ marginBottom: { xs: '8px', md: '16px' } }}>Description</Typography>
+    <Typography variant="body1">HELLO WORLD Exercises
+      It's time to practice working with HTML. Please add on to the markup to recreate the two words 
+      Hello World 
+    </Typography>
+    <TestResults tests={tests} /> / 
+  </Box>
+  <Box sx={{ flex: '1', padding: '16px' }}>
+    <Typography variant="h6" sx={{ marginBottom: { xs: '8px', md: '16px' } }}>WRITE YOUR CODE HERE</Typography>
+    <AceEditor
+      mode="html"
+      theme="github"
+      name="html-editor"
+      width="100%"
+      height="400px"
+      editorProps={{ $blockScrolling: true }}
+      value={editorValue}
+      onChange={onEditorChange}
+      sx={{ marginBottom: '16px', bgcolor: 'gray', color: 'white' , fontSize: '120px'  }}
+    />
+  </Box>
+  
+  <Box sx={{ flex: '1', padding: '16px', display: { xs: 'none', md: 'block' } }}>
+  <Typography variant="h6" sx={{ marginBottom: { xs: '8px', md: '16px' } }}>YOUR RESULT</Typography>
+
+    <iframe id="test-output" title="Test Output" width="100%" height="420px" style={{ backgroundColor: 'darkgray' }}></iframe>
+    <Button variant="contained" sx={{ m: '16px',  }} onClick={onTestClick}>SEE RESULT</Button>
+    <Button variant="contained" onClick={runTests}>Run Tests</Button>
+    <Button variant="contained">NEXT</Button>
+
+  </Box>
+</Box>
   );
 };
 
-export default Task;
+export default Task1;
