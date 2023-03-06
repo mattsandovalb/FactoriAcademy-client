@@ -24,16 +24,22 @@ const ViewCourses = () => {
     setCourses(response);
   };
 
+
+  
   return (
     <Container maxWidth="md">
       <Grid container spacing={2}>
         {courses.map((course) => (
           <Grid key={course.id} item xs={12} sm={6} md={4}>
             <Card sx={{ height: 450 }}>
-              <CardMedia
-                sx={{ height: 140 }}
-                image={`http://localhost:8000/images/poster/${course.poster}`}
-              />
+            <CardMedia
+  sx={{ height: 140 }}
+  image={`http://localhost:8000/images/poster/${course.poster}`}
+  onError={(e) => {
+    e.target.src = "../../../../assets/factoria/coder.png";
+  }}
+/>
+
               <CardContent sx={{ height: 220 }}>
                 <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
                   {course.tech}

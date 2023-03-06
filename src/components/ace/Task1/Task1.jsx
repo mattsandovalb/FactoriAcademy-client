@@ -22,10 +22,10 @@ const Task1 = () => {
   function runTests() {
     const h1Regex = /<h1>Hello World<\/h1>/;
 
-    // Evaluate the student's code against the test cases
+    
     const passed = h1Regex.test(editorValue);
 
-    // Create an array of test objects
+    
     const tests = [
       {
         name: "Contains <h1>Hello World</h1>",
@@ -46,9 +46,10 @@ const Task1 = () => {
       It's time to practice working with HTML. Please add on to the markup to recreate the two words 
       Hello World 
     </Typography>
+    <TestResults tests={tests} />
   </Box>
   <Box sx={{ flex: '1', padding: '16px' }}>
-    <Typography variant="h3" sx={{ marginBottom: { xs: '8px', md: '16px' } }}>WRITE YOUR CODE HERE</Typography>
+    <Typography variant="h6" sx={{ marginBottom: { xs: '8px', md: '16px' } }}>WRITE YOUR CODE HERE</Typography>
     <AceEditor
       mode="html"
       theme="github"
@@ -58,13 +59,15 @@ const Task1 = () => {
       editorProps={{ $blockScrolling: true }}
       value={editorValue}
       onChange={onEditorChange}
-      sx={{ marginBottom: '16px', bgcolor: 'gray', color: 'white' }}
+      sx={{ marginBottom: '16px', bgcolor: 'gray', color: 'white' , fontSize: '120px'  }}
     />
-    <Button variant="contained" sx={{ m: '16px',  }} onClick={onTestClick}>SEE RESULT</Button>
   </Box>
+  
   <Box sx={{ flex: '1', padding: '16px', display: { xs: 'none', md: 'block' } }}>
-    <TestResults tests={tests} />
-    <iframe id="test-output" title="Test Output" width="100%" height="380px" style={{ backgroundColor: 'darkgray' }}></iframe>
+  <Typography variant="h6" sx={{ marginBottom: { xs: '8px', md: '16px' } }}>YOUR RESULT</Typography>
+
+    <iframe id="test-output" title="Test Output" width="100%" height="420px" style={{ backgroundColor: 'darkgray' }}></iframe>
+    <Button variant="contained" sx={{ m: '16px',  }} onClick={onTestClick}>SEE RESULT</Button>
     <Button variant="contained" onClick={runTests}>Run Tests</Button>
 
   </Box>
