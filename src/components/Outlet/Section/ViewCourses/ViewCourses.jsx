@@ -32,7 +32,7 @@ const ViewCourses = () => {
             <Card sx={{ height: 450 }}>
               <CardMedia
                 sx={{ height: 140 }}
-                image={`http://localhost:8000/images/poster/${course.poster}`}
+                image={`${course.poster}`}
               />
               <CardContent sx={{ height: 220 }}>
                 <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>

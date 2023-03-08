@@ -2,6 +2,8 @@ import axios from 'axios';
 
 const apiUrl = 'http://localhost:8000/api/';
 
+const token = localStorage.getItem('token');
+
 const getCourses = async () => {
   const response = await axios.get(`${apiUrl}courses`);
   return response.data;
@@ -15,6 +17,8 @@ const getCourseById = async (id) => {
 const createCourse = async (formData) => {
   const response = await axios.post(`${apiUrl}courses`, formData, {
     headers: {
+      
+      Authorization: `Bearer ${token}`,
       'Content-Type': 'multipart/form-data'
     }
   });
@@ -22,8 +26,9 @@ const createCourse = async (formData) => {
 };
 
 const updateCourse = async (id, formData) => {
-  const response = await axios.put(`${apiUrl}courses/${id}`, formData, {
+  const response = await axios.patch(`${apiUrl}courses/${id}`, formData, {
     headers: {
+      Authorization: `Bearer ${token}`,
       'Content-Type': 'multipart/form-data'
     }
   });
@@ -31,7 +36,11 @@ const updateCourse = async (id, formData) => {
 };
 
 const deleteCourse = async (id) => {
-  const response = await axios.delete(`${apiUrl}courses/${id}`);
+  const response = await axios.delete(`${apiUrl}courses/${id}`,{
+    headers:{
+      Authorization: `Bearer ${token}`
+    }
+  });
   return response.data;
 };
 
