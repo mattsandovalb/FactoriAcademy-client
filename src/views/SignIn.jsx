@@ -51,11 +51,8 @@ const Login = () => {
     try {
       const  token  = await login(email, password);
       localStorage.setItem('token', token.authorisation.token);
-      authUser.dispatch({
-        type:'SET_AUTH_USER',
-        payload: token,
-      })
-      // window.location.href="/admin"
+      
+      window.location.href="/cursos"
       // redirect to dashboard
     } catch (error) {
       console.error(error);

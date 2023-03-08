@@ -5,7 +5,8 @@ import CssBaseline from '@mui/material/CssBaseline';
 import { Link } from 'react-router-dom';
 import AutoGraphIcon from '@mui/icons-material/AutoGraph';
 import logo from '../../../assets/factoria/logoblack.png'; 
-
+import { getUser } from '../../../services/apiAuth';
+import { useEffect } from 'react';
 
 
 
@@ -13,6 +14,22 @@ import logo from '../../../assets/factoria/logoblack.png';
 const drawerWidth = 220;
 
 export default function DashAdmin() {
+  const token = localStorage.getItem('token');
+  
+  async function fetchUser(){
+    try {
+      const  user  = await getUser();
+      console.log(user)
+      // redirect to dashboard
+    } catch (error) {
+      console.error(error);
+    }
+  }
+  ;
+  useEffect(() => {
+    fetchUser();
+  }, [])
+
   return (
     <>
     <Box sx={{ display: 'flex' }}>
