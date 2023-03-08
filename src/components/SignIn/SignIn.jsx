@@ -12,12 +12,9 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-<<<<<<< HEAD:src/components/SignIn/SignIn.jsx
 import logo from '../../assets/factoria/logoblack.png'; 
-=======
-import { login } from '../services/apiAuth';
+import { login } from '../../services/apiAuth';
 // import { getMeFn, loginUserFn } from '../components/api/AuthUser';
->>>>>>> Authuser:src/views/SignIn.jsx
 
 function Copyright(props) {
   return (
