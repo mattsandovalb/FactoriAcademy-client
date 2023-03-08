@@ -49,8 +49,8 @@ function App() {
       {/* TASK */}
       
              <Route path='/taskprotected' element={<ListTaskProtected/>} />
-             <Route path='/taskprotected/create' element={<CreateTask/>} />
-             <Route path='/taskprotected/:id/edit' element={<UpdateTask/>}/>
+             <Route path='/tasks/create' element={<CreateTask/>} />
+             <Route path='/tasks/:id/edit' element={<UpdateTask/>}/>
 {/* FILTER PROGRESS
  */}             
              <Route path='/user-courses' element={<UserCourses/>}/>

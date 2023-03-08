@@ -8,7 +8,7 @@ const CreateUser = () => {
 
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [role, setRole] = useState('');
  
   const navigate = useNavigate();
 
@@ -26,7 +26,6 @@ const CreateUser = () => {
         const formData = new FormData();
         formData.append('name', name);
         formData.append('email', email);
-        formData.append('password', password);
     
         await createUser(formData);
 
@@ -63,12 +62,12 @@ const CreateUser = () => {
             margin="normal"
             required
           />
-          <Typography  variant="h4" component="h2"> PASSWORD </Typography>
+           <Typography  variant="h4" component="h2"> ROLE </Typography>
           <TextField
             fullWidth
-            label="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            label="role"
+            value={role}
+            onChange={(e) => setRole(e.target.value)}
             margin="normal"
             required
           />

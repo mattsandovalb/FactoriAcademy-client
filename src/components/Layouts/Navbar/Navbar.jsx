@@ -13,10 +13,15 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import { Link } from 'react-router-dom';
 import logo from '../../../assets/factoria/logoBlanco.png'; 
-
+import ForumIcon from '@mui/icons-material/Forum';
 
 const pages = ['Home', 'Cursos', 'Blog'];
 const settings = ['Admin', 'Mis Cursos', 'Logout'];
+
+function openChat() {
+  window.open('https://factoriachat.es/', 'chat', 'width=390, height=844, left=1200, top=100');
+}
+
 
 function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -40,8 +45,7 @@ function ResponsiveAppBar() {
   return (
     <AppBar position="static" >
       <Container maxWidth="xl">
-        <Toolbar disableGutters> 
-
+        <Toolbar disableGutters sx={{ display: 'flex', justifyContent: 'space-between' }}> 
          <Typography
             variant="h5"
             noWrap
@@ -125,18 +129,13 @@ function ResponsiveAppBar() {
           >
        <img src={logo} alt="Logo" height="25" />
           </Typography> 
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {pages.map((page) => (
-              <Button
-                key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block', fontSize: '32px'}}
-              >
-                <Link to={`/${page.toLowerCase()}`} style={{ textDecoration: 'none', color: 'inherit' }}>
-            {page}
-        </Link>
-              </Button>
-            ))}
+        
+
+        <Box sx={{ display: 'flex', justifyContent: 'space-between', flexDirection: 'row' }}>
+          <Box  sx={{pr: 4, }}>
+          <IconButton style={{color: "white"}} onClick={openChat}>
+      <ForumIcon sx={{ color: 'white' }}  />
+    </IconButton>
           </Box>
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
@@ -169,6 +168,9 @@ function ResponsiveAppBar() {
               ))}
             </Menu>
           </Box>
+
+        </Box>
+          
         </Toolbar>
       </Container>
     </AppBar>

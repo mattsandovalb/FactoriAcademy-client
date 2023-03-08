@@ -12,6 +12,8 @@ const CreateTask = () => {
     const [documentation1, setDocumentation1] = useState('');
     const [documentation2, setDocumentation2] = useState('');
     const [value, setValue] = useState('');
+    const [solution, setSolution] = useState('');
+
     const navigate = useNavigate();
 
     const handleSave = async (e) => {
@@ -31,11 +33,13 @@ const CreateTask = () => {
                 formData.append("instruction", instruction);
                 formData.append("documentation1", documentation1);
                 formData.append("documentation2", documentation2);
+                formData.append("solution", solution);
+
                 formData.append("value", value);
       
                 await createTask(formData);
       
-                navigate('/taskprotected');
+                navigate('taskprotected');
                 Swal.fire('New Exercise Created!', '', 'success');
             } else if (result.isDenied) {
                 Swal.fire('Changes are not saved', '', 'info');
@@ -78,7 +82,11 @@ const CreateTask = () => {
                         value={value} 
                         onChange={(e)=> setValue(e.target.value)} 
                         type="text" />
-                        
+                         <Typography  variant="h4" component="h2"> Solution </Typography>    
+                    <TextField id="outlined-basic" label="Solution" variant="outlined" 
+                        value={solution} 
+                        onChange={(e)=> setSolution(e.target.value)} 
+                        type="text" />
                     <Button variant="outlined"><Link to="/coursesprotected" style={{ textDecoration: 'none', color: 'inherit' }}>Cancel</Link></Button>
                     <Button type="submit" variant="contained" onClick={handleSave}>SAVE</Button>
             </FormControl>
