@@ -52,7 +52,7 @@ const Login = () => {
       const  token  = await login(email, password);
       localStorage.setItem('token', token.authorisation.token);
       
-      window.location.href="/cursos"
+      window.location.href="/admin"
       // redirect to dashboard
     } catch (error) {
       console.error(error);

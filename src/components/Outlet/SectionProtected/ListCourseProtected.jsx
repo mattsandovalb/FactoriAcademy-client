@@ -15,9 +15,10 @@ const ListCourseProtected = () => {
 
   const getAllCourses = async () => {
     const response = await getCourses();
-    setCourses(response);
+    setCourses(response.course);
+    
   };
-
+  console.log("Aqui",courses)
   const habdleDeleteCourse = async (id) => {
     Swal.fire({
       title: 'Are you sure?',

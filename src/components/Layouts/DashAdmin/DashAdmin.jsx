@@ -38,7 +38,7 @@ export default function DashAdmin() {
   <Toolbar sx={{ justifyContent: 'space-between' }}>
   <img src={logo} alt="Logo" height="25" />
     <Typography variant="h5" component="h5" sx={{ flexGrow: 1, m:2, pl:10 }}>
-      dashboard
+      Dashboard
     </Typography>
     <IconButton color="inherit" sx={{ 
   flexGrow: 1, 
