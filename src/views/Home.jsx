@@ -1,7 +1,7 @@
 import React from 'react'
 import { Container } from '@mui/material'
 import Navbar from '../components/Layouts/Navbar/Navbar'
-import SignIn from './SignIn';
+import SignIn from '../components/SignIn/SignIn.jsx';
 
 function Home() {
   

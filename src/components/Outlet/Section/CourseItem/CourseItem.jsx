@@ -54,7 +54,6 @@ const CourseItem =() => {
       maxHeight: 'auto',
       ml: '20px'
     }}>
-       
         <Typography gutterBottom variant="p" component="div">
           {tasks} TASK 1
         </Typography>

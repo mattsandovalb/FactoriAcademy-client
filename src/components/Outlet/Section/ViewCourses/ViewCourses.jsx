@@ -31,8 +31,6 @@ const ViewCourses = () => {
     setCourses(response);
   };
 
-
-  
   return (
     <Container maxWidth="md">
       <Grid container spacing={2}>
@@ -43,7 +41,6 @@ const ViewCourses = () => {
   sx={{ height: 140 }}
   image={logos[Math.floor(Math.random() * logos.length)]}
 />
-
               <CardContent sx={{ height: 220 }}>
                 <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
                   {course.tech}
