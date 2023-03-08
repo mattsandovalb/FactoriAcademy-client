@@ -13,7 +13,7 @@ import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { login } from '../services/apiAuth';
-
+// import { getMeFn, loginUserFn } from '../components/api/AuthUser';
 
 function Copyright(props) {
   return (
@@ -49,6 +49,7 @@ const Login = () => {
       const { token } = await login(email, password);
       localStorage.setItem('token', token);
       window.location.href="/admin"
+      console.log(localStorage.getItem('token'));
       // redirect to dashboard
     } catch (error) {
       console.error(error);
