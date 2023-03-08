@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import App from './App.js';
 import reportWebVitals from './reportWebVitals.js';
 import {ThemeProvider, createTheme} from '@mui/material';
+import { AuthUserContextProvider } from './services/providers/AuthUserContextProvider.jsx';
 //import Swal from 'sweetalert2';
 
 const theme = createTheme({
@@ -72,11 +73,14 @@ const theme = createTheme({
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
+  <AuthUserContextProvider>
       <ThemeProvider theme={theme}>
         <App />
     </ThemeProvider>
+  </AuthUserContextProvider>
   </React.StrictMode>
 );
+
 
 
 reportWebVitals();
