@@ -14,16 +14,10 @@ const Task2 = () => {
     setEditorValue(newValue);
   };
 
+ 
   const onTestClick = () => {
-    const editor = document.getElementById('editor');
-    const selection = editor.editor.selection;
-    selection.clearSelection();
-    selection.selectWord();
-    const range = selection.getRange();
-    const divStyle = 'background-color: red; width: 100px; height: 100px;';
-    editor.editor.session.replace(range, `<div style="${divStyle}"></div>`);
-    selection.moveCursorTo(range.start.row, range.start.column + 6);
-    editor.editor.scrollToLine(range.start.row, true, true, () => {});
+    const iframe = document.getElementById('test-output');
+    iframe.srcdoc = editorValue;
   };
 
   const runTests = () => {

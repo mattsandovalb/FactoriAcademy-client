@@ -5,7 +5,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import { Link } from 'react-router-dom';
 import AutoGraphIcon from '@mui/icons-material/AutoGraph';
 import logo from '../../../assets/factoria/logoblack.png'; 
-
+import ForumIcon from '@mui/icons-material/Forum';
 
 
 
@@ -13,24 +13,33 @@ import logo from '../../../assets/factoria/logoblack.png';
 const drawerWidth = 220;
 
 export default function DashAdmin() {
+  
+function openChat() {
+  window.open('https://factoriachat.es/', 'chat', 'width=390, height=844, left=1200, top=100');
+}
   return (
     <>
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
       <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
-  <Toolbar sx={{ justifyContent: 'space-between' }}>
-  <img src={logo} alt="Logo" height="25" />
-    <Typography variant="h5" component="h5" sx={{ flexGrow: 1, m:2, pl:10 }}>
-      dashboard
-    </Typography>
-    <IconButton color="inherit" sx={{ 
-  flexGrow: 1, 
-  display: { xs: 'flex', md: 'none' },
-  justifyContent: 'center',
-}}>
-  <HomeIcon />
-</IconButton>
-<IconButton color="inherit" sx={{ 
+               <Toolbar sx={{ justifyContent: 'space-between' }}>
+                <img src={logo} alt="Logo" height="25" />
+               <Typography variant="h5" component="h5" sx={{ flexGrow: 1, m:2, pl:10 }}>
+                          dashboard
+               </Typography>
+           <IconButton color="inherit" sx={{ 
+              flexGrow: 1, 
+             display: { xs: 'flex', md: 'none' },
+              justifyContent: 'center',
+                   }}>
+           <HomeIcon />
+      </IconButton>  
+       
+          <IconButton style={{color: "white"}} onClick={openChat}>
+      <ForumIcon sx={{ color: 'white' }}  />
+    </IconButton>
+        
+      <IconButton color="inherit" sx={{ 
   flexGrow: 1, 
   display: { xs: 'flex', md: 'none' },
   justifyContent: 'center',

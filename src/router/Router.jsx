@@ -26,6 +26,9 @@ function Router() {
             <Route path='/' element={<Home/>} />
             <Route path='/cursos' element={<Cursos/>} />
             <Route path='*' element={<Notfoundpage/>} />
+            
+ {/*       </RequireAuth> */}
+
             <Route path='/courses/:id' element={<UserProfile/>} />
             <Route element={<Layout />}>
               <Route path='/admin' element={<Admin/>} />  

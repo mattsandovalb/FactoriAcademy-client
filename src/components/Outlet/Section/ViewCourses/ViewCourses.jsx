@@ -51,7 +51,7 @@ const ViewCourses = () => {
                 <Typography sx={{ mb: 1.5 }} color="text.secondary">
                   {course.tech}
                 </Typography>
-                <Typography variant="h6">{course.description}</Typography>
+                <Typography variant="body1">{course.description}</Typography>
                 <Typography variant="h6" component="h6">
                   {course.level}
                 </Typography>

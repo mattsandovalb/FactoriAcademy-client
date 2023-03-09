@@ -60,17 +60,17 @@ export const tasks =  [
       },
       {
       "name": "Has a background color of red",
-      "regex": "/background-color:\sred;/s",
+      "regex": "/background-color:sred;/s",
       "error": "Expected background color of red was not found"
       },
       {
       "name": "Has a width of 100 pixels",
-      "regex": "/width:\s100px;/s",
+      "regex": "/width:s100px;s",
       "error": "Expected width of 100 pixels was not found"
       },
       {
       "name": "Has a height of 100 pixels",
-      "regex": "/height:\s100px;/s",
+      "regex": "/height:s100px;s",
       "error": "Expected height of 100 pixels was not found"
       }
       ]
