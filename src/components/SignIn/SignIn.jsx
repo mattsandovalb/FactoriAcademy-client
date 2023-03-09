@@ -14,6 +14,9 @@ import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import logo from '../../assets/factoria/logoblack.png'; 
 import { login } from '../../services/apiAuth/apiAuth';
+//import { login } from '../services/apiAuth';
+import { useAuthUserContext } from '../../services/providers/AuthUserContextProvider';
+
 
 function Copyright(props) {
   return (
@@ -34,18 +37,22 @@ const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  const authUser = useAuthUserContext()
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const { token } = await login(email, password);
-      localStorage.setItem('token', token);
-      window.location.href="/admin"
-      console.log(localStorage.getItem('token'));
+      const  token  = await login(email, password);
+      localStorage.setItem('token', token.authorisation.token);
+      
+      window.location.href="/cursos"
       // redirect to dashboard
     } catch (error) {
       console.error(error);
     }
   }
+
+  
 
 //---------------------------------------------------Hacer que la contraseña se vuelva visible----------------------------------------//
 const [showPassword, setShowPassword] = useState(false);

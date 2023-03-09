@@ -28,7 +28,7 @@ const ViewCourses = () => {
 
   const getAllCourses = async () => {
     const response = await getCourses();
-    setCourses(response);
+    setCourses(response.course);
   };
 
   return (

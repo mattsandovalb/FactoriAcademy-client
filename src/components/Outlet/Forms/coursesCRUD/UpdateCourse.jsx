@@ -3,6 +3,8 @@ import { useNavigate, useParams, Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import {TextField, Button, Container, Typography, Box, FormControl} from '@mui/material';
 import { getCourseById, updateCourse } from '../../../../services/apiService/apiService';
+import { getCourseById, updateCourse } from './../../../../services/apiService';
+import queryString from 'query-string';
 
 const UpdateCourse = () => {
 
@@ -44,9 +46,10 @@ const UpdateCourse = () => {
                 formData.append("poster", poster);
                 formData.append("level", level);
 
+                
                 await updateCourse(id, formData);
 
-                navigate('/coursesprotected');
+                // navigate('/coursesprotected');
                 Swal.fire('Saved!', '', 'success');
             } else if (result.isDenied) {
                 Swal.fire('Changes are not saved', '', 'info');
@@ -95,7 +98,7 @@ return (
                       InputLabelProps={{htmlFor: 'outlined-basic'}}
                       />
        <Button variant="outlined"><Link to="/coursesprotected" style={{ textDecoration: 'none', color: 'inherit' }}>Cancel</Link></Button>
-      <Button type="submit" variant="contained" onClick={()=> navigate('/coursesprotected')}>UPDATE</Button>
+      <Button type="submit" variant="contained" onClick={handleUpdate}>UPDATE</Button>
 </FormControl>
 </Box>
  </Container>
