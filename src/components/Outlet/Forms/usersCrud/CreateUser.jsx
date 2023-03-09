@@ -8,8 +8,8 @@ const CreateUser = () => {
 
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [role, setRole] = useState(null);
+  const [role, setRole] = useState('');
+ 
   const navigate = useNavigate();
 
   const handleSubmit = async(event) => {
@@ -26,9 +26,7 @@ const CreateUser = () => {
         const formData = new FormData();
         formData.append('name', name);
         formData.append('email', email);
-        formData.append('password', password);
-        formData.append('role', role);
-       
+    
         await createUser(formData);
 
           navigate('/usersprotected');
@@ -64,24 +62,16 @@ const CreateUser = () => {
             margin="normal"
             required
           />
-          <Typography  variant="h4" component="h2"> PASSWORD </Typography>
+           <Typography  variant="h4" component="h2"> ROLE </Typography>
           <TextField
             fullWidth
-            label="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            margin="normal"
-            required
-          />
-          <Typography  variant="h4" component="h2"> ROLE </Typography>
-          <TextField
-            fullWidth
-            label="Role"
+            label="role"
             value={role}
             onChange={(e) => setRole(e.target.value)}
             margin="normal"
             required
           />
+         
           <Button variant="contained" type="submit" onClick={handleSubmit}>
             Create
           </Button>

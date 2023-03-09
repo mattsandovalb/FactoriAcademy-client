@@ -8,8 +8,7 @@ import { getUserById, updateUser } from './../../../../services/apiService';
 const UpdateUser = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [role, setRole] = useState(null);
+  const [role, setRole] = useState('');
   const { id } = useParams();
   const navigate = useNavigate();
  
@@ -19,7 +18,6 @@ const UpdateUser = () => {
         const response = await getUserById(id);
         setName(response.name);
         setEmail(response.email);
-        setPassword(response.password);
         setRole(response.role);
     
       } catch (error) {
@@ -44,7 +42,6 @@ const UpdateUser = () => {
         const formData = new FormData();
               formData.append('name', name);
               formData.append('email', email);
-              formData.append('password', password);
               formData.append('role', role);
 
               await  updateUser(id, formData); 
@@ -82,15 +79,7 @@ return (
   margin="normal"
   required
   />
-  <Typography  variant="h4" component="h2"> Password </Typography>
-  <TextField
-  fullWidth
-  label="password"
-  value={password}
-  onChange={(e) => setPassword(e.target.value)}
-  margin="normal"
-  required
-  />
+  
   <Typography  variant="h4" component="h2"> Role </Typography>
   <TextField
   fullWidth

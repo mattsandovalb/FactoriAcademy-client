@@ -67,6 +67,40 @@ const deleteUser = async (id) => {
   const response = await axios.delete(`${apiUrl}users/${id}`);
   return response.data;
 };
+const getTasks = async () => {
+  const response = await axios.get(`${apiUrl}exercices`);
+  return response.data;
+};
+
+const getTaskById = async (id) => {
+  const response = await axios.get(`${apiUrl}exercices/${id}`);
+  return response.data;
+};
+
+const createTask = async (formData) => {
+  const response = await axios.post(`${apiUrl}exercices`, formData, {
+    headers: {
+      'Content-Type': 'multipart/form-data'
+    }
+  });
+  return response.data;
+};
+
+const updateTask = async (id, formData) => {
+  const response = await axios.put(`${apiUrl}exercices/${id}`, formData, {
+    headers: {
+      'Content-Type': 'multipart/form-data'
+    }
+  });
+  return response.data;
+};
+
+const deleteTask = async (id) => {
+  const response = await axios.delete(`${apiUrl}courses/${id}`);
+  return response.data;
+};
+
+
 
 export {
   getCourses,
@@ -78,6 +112,11 @@ export {
   getUserById,
   createUser,
   updateUser,
-  deleteUser
+  deleteUser,
+  getTasks,
+  getTaskById,
+  createTask,
+  updateTask,
+  deleteTask,
 };
 

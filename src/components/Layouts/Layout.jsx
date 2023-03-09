@@ -5,11 +5,10 @@ import DashAdmin from './DashAdmin/DashAdmin.jsx'
 const Layout = () => {
     return (
     <div>
-     <DashAdmin />
+     <DashAdmin />   
         <main>
             <Outlet/>
         </main>
-   
     </div>
 )
 }
