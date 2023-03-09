@@ -4,13 +4,17 @@ import 'ace-builds/src-noconflict/mode-html';
 import 'ace-builds/src-noconflict/theme-github';
 import { Box, Typography, Button } from '@mui/material';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-import TestResults from "../Task1/TestResults";
-import { getTaskById } from '../../../services/apiService';
+import TestResults from "./TestResult";
+import {tasks} from '../../../data/tasks.js';
+import ListTasks from './ListTasks';
 
 const Task = () => {
+
   const [editorValue, setEditorValue] = useState('');
   const [tests, setTests] = useState([]);
-  const task = getTaskById();
+
+  
+  
 
   const onEditorChange = (newValue) => {
     setEditorValue(newValue);
@@ -22,27 +26,41 @@ const Task = () => {
   };
 
   function runTests() {
-    const h1Regex = /<h1>Hello World<\/h1>/;
+    const tests = tasks.tests.map(test => {
+      const regex = new RegExp(test.regex);
+      const passed = regex.test(editorValue);
 
-    const passed = h1Regex.test(editorValue);
-
-    const tests = [      {        name: "Contains <h1>Hello World</h1>",        passed: passed,        error: passed ? "" : "Expected <h1>Hello World</h1> tag was not found",      },    ];
+      return {
+        name: test.name,
+        passed: passed,
+        error: passed ? "" : test.error,
+      }
+    });
 
     setTests(tests);
   }
 
+  // Validate that tasks prop is defined
+  if (!tasks) {
+    return null; // or render an error message or fallback component
+  }
+
   return (
     <Box sx={{ p: '16px', display: 'flex', flexDirection: { xs: 'column', md: 'row' } }}>
+       <ListTasks tarea={tasks}/>
       <Box sx={{ flex: '1', padding: '16px' }}>
-        <Typography variant="h1" component="h1" sx={{ padding: '16px' }}>{task.title}</Typography>
-        <Typography variant="h3" sx={{ marginBottom: { xs: '8px', md: '16px' } }}>Description</Typography>
-        <Typography variant="body1">{task.statment}</Typography>
-        <Typography variant="h3" sx={{ marginBottom: { xs: '8px', md: '16px' } }}>Instructions</Typography>
-        <Typography variant="body1">{task.instruction}</Typography>
-        <Typography variant="h3" sx={{ marginBottom: { xs: '8px', md: '16px' } }}>Documentation</Typography>
-        <Typography variant="body1"><a href={task.documentation1} target="_blank" rel="noopener noreferrer">Documentation 1</a></Typography>
-        <Typography variant="body1"><a href={task.documentation2} target="_blank" rel="noopener noreferrer">Documentation 2</a></Typography>
-        <TestResults tests={tests} /> / 
+        <Typography variant="h1" component="h1" sx={{ padding: '16px' }}>{tasks.title}</Typography>
+        <Typography variant="h3" sx={{ marginBottom: { xs: '8px', md: '16px' } }}>{tasks.statement}</Typography>
+        <Typography variant="body1">{tasks.statement}</Typography>
+        <Typography variant="h3" sx={{ marginBottom: { xs: '8px', md: '16px' } }}>{tasks.instruction}</Typography>
+        <Typography variant="body1">{tasks.instruction}</Typography>
+        <Typography variant="h3" sx={{ marginBottom: { xs: '8px', md: '16px' } }}>{tasks.documentaction1}</Typography>
+        <Typography variant="body1"><a href={tasks.documentation1} target="_blank" rel="noopener noreferrer">{tasks.documentation2} </a></Typography>
+        <Typography variant="body1"><a href={tasks.documentation2} target="_blank" rel="noopener noreferrer">{tasks.title} </a></Typography>
+        <TestResults tests={tests} />
+        <Button variant="contained" onClick={runTests} sx={{ mt: '16px' }}>
+          Run Tests <ArrowForwardIosIcon />
+        </Button>
       </Box>
       <Box sx={{ flex: '1', padding: '16px' }}>
         <Typography variant="h6" sx={{ marginBottom: { xs: '8px', md: '16px' } }}>WRITE YOUR CODE HERE</Typography>
@@ -55,18 +73,13 @@ const Task = () => {
           editorProps={{ $blockScrolling: true }}
           value={editorValue}
           onChange={onEditorChange}
-          sx={{ marginBottom: '16px', bgcolor: 'gray', color: 'white' , fontSize: '120px'  }}
+          sx={{ marginBottom: '16px', bgcolor: 'gray', color: 'white', fontSize: '120px' }}
         />
-      </Box>
       
-  
-  <Box sx={{ flex: '1', padding: '16px', display: { md: 'block' } }}>
-  <Typography variant="h6" sx={{ marginBottom: { xs: '8px', md: '16px' } }}>YOUR RESULT</Typography>
-    <iframe id="test-output" title="Test Output" width="100%" height="420px" style={{ backgroundColor: 'darkgray' }}></iframe>
-    <Button variant="contained" sx={{ m: 1,  }} onClick={onTestClick}>SEE RESULT</Button>
-    <Button variant="contained" onClick={runTests}>Run Tests</Button>
-    <Button variant="contained" color="secondary" sx={{ m: 1,  }}>NEXT <ArrowForwardIosIcon/></Button>
-  </Box>
+      <Button variant="contained" onClick={onTestClick}>
+          Preview Result <ArrowForwardIosIcon />
+        </Button>
+      </Box>
 </Box>
   );
 };

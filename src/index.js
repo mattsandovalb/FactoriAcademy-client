@@ -13,10 +13,10 @@ const theme = createTheme({
     secondary: {
       main: '#020100',
     },
-    complement1: {
+    info: {
       main: '#9C9C9C',
     },
-    complement2: {
+    warning: {
       main: '#FFA37F',
     },
     white: {

@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
-import { getCourseById } from '../services/apiService';
+import { getCourseById } from '../../../../services/apiService';
 import { Typography, Container, Button } from '@mui/material';
-import Task from '../components/ace/Task/Task';
-import Navbar from '../components/Layouts/Navbar/Navbar';
-import Footer from '../components/Layouts/Footer/Footer'
-import CourseItem from '../components/Outlet/Section/CourseItem/CourseItem';
+import Task from '../../../ace/Task/Task';
+import CourseItem from '../CourseItem/CourseItem';
 
 const DetailCourse = () => {
   const { id } = useParams();
@@ -27,16 +25,15 @@ const DetailCourse = () => {
 
   return (
     <>
-      <Navbar />
+   
       <Container sx={{ p: 2 }}>
         <Typography variant="h4" component="h4" sx={{ p: 2 }}>Programa del Curso</Typography>
-        <CourseItem title={course.title} description={course.description} tech={course.tech} level={course.level} />
-        <Button color="secondary" variant="contained" onClick={handleClick}>
+           <CourseItem poster={course.poster} title={course.title} description={course.description} tech={course.tech} level={course.level} />
+           <Button color="secondary" variant="contained" onClick={handleClick}>
           {isOpen ? "Close Task" : "Open Task"}
         </Button>
         {isOpen && <Task />}
       </Container>
-      <Footer/>
 
     </>
   )

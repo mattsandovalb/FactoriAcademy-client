@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
+import {CardContent, Container, CardMedia } from '@mui/material';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 
@@ -13,6 +13,7 @@ const CourseItem =() => {
   const [description, setDescription] = useState('');
   const [tech, setTech] = useState('');
   const [level, setLevel] = useState('');
+  const [poster, setPoster] = useState('');
 
   const { id } = useParams();
 
@@ -21,6 +22,7 @@ const CourseItem =() => {
       const fetchData = async () => {
           const course = await getCourseById(id);
           setTitle(course.title);
+          setPoster(course.poster);
           setDescription(course.description);
           setTech(course.tech);
           setLevel(course.level);
@@ -30,7 +32,22 @@ const CourseItem =() => {
 
   return (
 <>
+<Container>
   <Grid item mb={4} xs={12} md={4} sm={6} spacing={2}>
+       <Card sx={{ 
+      display: 'flex',
+      flexDirection: { xs: 'column', md: 'row' },
+      bgcolor: 'info',
+      maxHeight: 'auto',
+      ml: '20px'
+    }}> 
+    <CardMedia
+  sx={{ height: 200, width: 200 }}
+  image={poster  }
+/>
+        
+    <CardContent sx={{  bgcolor: 'info',
+}}>
      <Typography gutterBottom variant="h3" component="div">
           {title}
         </Typography>
@@ -40,20 +57,13 @@ const CourseItem =() => {
         <Typography gutterBottom variant="h5" component="div">
           {level}
         </Typography>
-        <Card sx={{ 
-      display: 'flex',
-      flexDirection: { xs: 'column', md: 'row' },
-     // maxWidth: '100%',
-      maxHeight: 'auto',
-      ml: '20px'
-    }}> 
-    <CardContent>
-    <Typography gutterBottom variant="p" component="div">
+     <Typography gutterBottom variant="p" component="div">
           {description}
       </Typography>
     </CardContent>
     </Card> 
-  </Grid>
+   </Grid>
+  </Container>
 </>
 
   )
