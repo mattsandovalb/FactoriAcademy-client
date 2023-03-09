@@ -3,7 +3,6 @@ import { useNavigate, useParams, Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import {TextField, Button, Container, Typography, Box, FormControl} from '@mui/material';
 import { getCourseById, updateCourse } from '../../../../services/apiService/apiService';
-import { getCourseById, updateCourse } from './../../../../services/apiService/apiService';
 //import queryString from 'query-string';
 
 const UpdateCourse = () => {

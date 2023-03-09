@@ -3,8 +3,6 @@ import { Link } from 'react-router-dom';
 import { Card, Table, TableContainer, TableHead, TableRow, TableCell, TableBody, IconButton, Paper, Typography, Button} from '@mui/material';
 import { Edit, Delete } from '@mui/icons-material';
 import Swal from 'sweetalert2';
-
-
 import { getCourses, deleteCourse} from '../../../services/apiService/apiService';
 
 
