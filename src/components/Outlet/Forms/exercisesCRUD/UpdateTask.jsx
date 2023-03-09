@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams, Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import {TextField, Button, Container, Typography, Box, FormControl} from '@mui/material';
-import { getTaskById, updateTask } from '../../../../services/apiService';
+import { getTaskById, updateTask } from '../../../../services/apiService/apiService';
 
 const UpdateTask = () => {
 

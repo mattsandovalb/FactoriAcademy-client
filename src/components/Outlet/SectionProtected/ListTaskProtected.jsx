@@ -5,7 +5,7 @@ import { Table, TableContainer, TableHead, TableRow, TableCell, TableBody, IconB
 import { Edit, Delete } from '@mui/icons-material';
 import Swal from 'sweetalert2';
 
-import { getTasks, deleteTask } from './../../../services/apiService';
+import { getTasks, deleteTask } from './../../../services/apiService/apiService';
 
 const ListTaskProtected = () => {
   const [tasks, setTasks] = useState([]);

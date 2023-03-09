@@ -3,7 +3,7 @@ import { useParams, useNavigate, Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { Button, Box, Container, FormControl, TextField, Typography } from '@mui/material';
 
-import { getUserById, updateUser } from './../../../../services/apiService';
+import { getUserById, updateUser } from './../../../../services/apiService/apiService';
 
 const UpdateUser = () => {
   const [name, setName] = useState('');

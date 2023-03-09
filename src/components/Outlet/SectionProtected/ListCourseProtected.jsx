@@ -4,15 +4,8 @@ import { Card, Table, TableContainer, TableHead, TableRow, TableCell, TableBody,
 import { Edit, Delete } from '@mui/icons-material';
 import Swal from 'sweetalert2';
 
-import { getCourses, deleteCourse} from './../../../services/apiService';
+import { getCourses, deleteCourse} from './../../../services/apiService/apiService';
 
-import logocss from '../../../assets/courses/css.jpg'; 
-import logohtml from '../../../assets/courses/html.png'; 
-import logofactoria from '../../../assets/courses/factoria.jpg'; 
-import logojs from '../../../assets/courses/js.png'; 
-import logophp from '../../../assets/courses/php.png'; 
-
-const logos = [logohtml, logocss, logofactoria, logojs, logophp];
 
 const ListCourseProtected = () => {
   const [courses, setCourses] = useState([]);
