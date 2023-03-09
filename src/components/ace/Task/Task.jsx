@@ -4,17 +4,13 @@ import 'ace-builds/src-noconflict/mode-html';
 import 'ace-builds/src-noconflict/theme-github';
 import { Box, Typography, Button } from '@mui/material';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-import TestResults from "./TestResult";
-import {tasks} from '../../../data/tasks.js';
+import TestResults from './TestResult';
+import { tasks } from '../../../data/tasks.js';
 import ListTasks from './ListTasks';
 
 const Task = () => {
-
   const [editorValue, setEditorValue] = useState('');
   const [tests, setTests] = useState([]);
-
-  
-  
 
   const onEditorChange = (newValue) => {
     setEditorValue(newValue);
@@ -26,61 +22,54 @@ const Task = () => {
   };
 
   function runTests() {
-    const tests = tasks.tests.map(test => {
+    const tests = tasks.tests.map((test) => {
       const regex = new RegExp(test.regex);
       const passed = regex.test(editorValue);
 
       return {
         name: test.name,
         passed: passed,
-        error: passed ? "" : test.error,
-      }
+        error: passed ? '' : test.error,
+      };
     });
 
     setTests(tests);
   }
 
-  // Validate that tasks prop is defined
-  if (!tasks) {
-    return null; // or render an error message or fallback component
-  }
-
   return (
     <Box sx={{ p: '16px', display: 'flex', flexDirection: { xs: 'column', md: 'row' } }}>
-       <ListTasks tarea={tasks}/>
+      <ListTasks
+        title={tasks.title}
+        instruction={tasks.instruction}
+        statement={tasks.statement}
+        documentation1={tasks.documentation1}
+        documentation2={tasks.documentation2}
+      />
       <Box sx={{ flex: '1', padding: '16px' }}>
-        <Typography variant="h1" component="h1" sx={{ padding: '16px' }}>{tasks.title}</Typography>
-        <Typography variant="h3" sx={{ marginBottom: { xs: '8px', md: '16px' } }}>{tasks.statement}</Typography>
-        <Typography variant="body1">{tasks.statement}</Typography>
-        <Typography variant="h3" sx={{ marginBottom: { xs: '8px', md: '16px' } }}>{tasks.instruction}</Typography>
-        <Typography variant="body1">{tasks.instruction}</Typography>
-        <Typography variant="h3" sx={{ marginBottom: { xs: '8px', md: '16px' } }}>{tasks.documentaction1}</Typography>
-        <Typography variant="body1"><a href={tasks.documentation1} target="_blank" rel="noopener noreferrer">{tasks.documentation2} </a></Typography>
-        <Typography variant="body1"><a href={tasks.documentation2} target="_blank" rel="noopener noreferrer">{tasks.title} </a></Typography>
-        <TestResults tests={tests} />
-        <Button variant="contained" onClick={runTests} sx={{ mt: '16px' }}>
-          Run Tests <ArrowForwardIosIcon />
-        </Button>
-      </Box>
-      <Box sx={{ flex: '1', padding: '16px' }}>
-        <Typography variant="h6" sx={{ marginBottom: { xs: '8px', md: '16px' } }}>WRITE YOUR CODE HERE</Typography>
+        <Typography variant="h1" component="h1" sx={{ padding: '16px' }}>
+          {tasks.title}
+        </Typography>
+        <Typography variant="h3" sx={{ marginBottom: { xs: '8px', md: '16px' } }}>
+          {tasks.statement}
+        </Typography>
         <AceEditor
           mode="html"
           theme="github"
-          name="html-editor"
           width="100%"
-          height="400px"
-          editorProps={{ $blockScrolling: true }}
+          height="500px"
           value={editorValue}
           onChange={onEditorChange}
-          sx={{ marginBottom: '16px', bgcolor: 'gray', color: 'white', fontSize: '120px' }}
+          name="editor"
+          editorProps={{ $blockScrolling: true }}
         />
-      
-      <Button variant="contained" onClick={onTestClick}>
-          Preview Result <ArrowForwardIosIcon />
-        </Button>
+        <Box sx={{ display: 'flex', justifyContent: 'flex-end', margin: '16px 0' }}>
+          <Button variant="contained" endIcon={<ArrowForwardIosIcon />} onClick={onTestClick}>
+            Run Tests
+          </Button>
+        </Box>
+        <TestResults tests={tests} runTests={runTests} />
       </Box>
-</Box>
+    </Box>
   );
 };
 

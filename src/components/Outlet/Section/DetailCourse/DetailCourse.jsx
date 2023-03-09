@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
 import { getCourseById } from '../../../../services/apiService';
 import { Typography, Container, Button } from '@mui/material';
-import Task from '../../../ace/Task/Task';
+import Task1 from '../../../ace/Task1/Task1';
 import CourseItem from '../CourseItem/CourseItem';
 
 const DetailCourse = () => {
@@ -32,7 +32,7 @@ const DetailCourse = () => {
            <Button color="secondary" variant="contained" onClick={handleClick}>
           {isOpen ? "Close Task" : "Open Task"}
         </Button>
-        {isOpen && <Task />}
+        {isOpen && <Task1 />}
       </Container>
 
     </>

@@ -5,8 +5,6 @@ import 'ace-builds/src-noconflict/theme-github';
 import { Box, Typography, Button } from '@mui/material';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import TestResults from "./TestResults";
-import Task2 from '../Task2/Task2';
-
 
 const Task1 = () => {
   const [editorValue, setEditorValue] = useState('');
@@ -19,12 +17,6 @@ const Task1 = () => {
   const onTestClick = () => {
     const iframe = document.getElementById('test-output');
     iframe.srcdoc = editorValue;
-  };
-  
-  const [showTask2, setShowTask2] = useState(false);
-
-  const handleClick = () => {
-    setShowTask2(true);
   };
 
   function runTests() {
@@ -77,13 +69,8 @@ const Task1 = () => {
     <iframe id="test-output" title="Test Output" width="100%" height="420px" style={{ backgroundColor: 'darkgray' }}></iframe>
     <Button variant="contained" sx={{ m: 1,  }} onClick={onTestClick}>SEE RESULT</Button>
     <Button variant="contained" onClick={runTests}>Run Tests</Button>
-    {showTask2 ? (
-        <Task2 />
-      ) : (
-        <Button variant="contained" color="secondary" sx={{ m: 1 }} onClick={handleClick}>
-          NEXT <ArrowForwardIosIcon />
-        </Button>
-      )}  </Box>
+    <Button variant="contained" color="secondary" sx={{ m: 1,  }}>NEXT <ArrowForwardIosIcon/></Button>
+  </Box>
 </Box>
   );
 };
