@@ -23,9 +23,9 @@ const ListCourseProtected = () => {
 
   const getAllCourses = async () => {
     const response = await getCourses();
-    setCourses(response);
+    setCourses(response.course);
+    
   };
-
   const habdleDeleteCourse = async (id) => {
     Swal.fire({
       title: 'Are you sure?',
@@ -88,7 +88,7 @@ const ListCourseProtected = () => {
                 <TableCell sx={{p:1 }}>{course.description}</TableCell>
                 <TableCell sx={{p:1 }}>{course.tech}</TableCell>
                 <TableCell sx={{p:1 }}>
-                  <img src={logos[Math.floor(Math.random() * logos.length)]}  alt={course.title} height={60} />
+                  <img src={`${course.poster}`} alt={course.title} height={60} />
                 </TableCell>
                 <TableCell sx={{p:1 }}>{course.level }</TableCell>
                 <TableCell sx={{p:1 }}>
