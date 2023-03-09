@@ -63,7 +63,7 @@ const Task1 = () => {
     />
   </Box>
   
-  <Box sx={{ flex: '1', padding: '16px', display: { xs: 'none', md: 'block' } }}>
+  <Box sx={{ flex: '1', padding: '16px', display: {  md: 'block' } }}>
   <Typography variant="h6" sx={{ marginBottom: { xs: '8px', md: '16px' } }}>YOUR RESULT</Typography>
 
     <iframe id="test-output" title="Test Output" width="100%" height="420px" style={{ backgroundColor: 'darkgray' }}></iframe>

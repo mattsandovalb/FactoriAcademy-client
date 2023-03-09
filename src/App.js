@@ -31,33 +31,30 @@ function App() {
             <Route path='*' element={<Notfoundpage/>} />
             <Route path='/user' element={<UserProfile/>} />
             <Route path='/courses/:id' element={<DetailCourse/>} />
-
- {/*       <RequireAuth> */} 
-      <Route element={<Layout />}>
-           <Route path='/admin' element={<Admin/>} />  
-
-             <Route path='/coursesprotected' element={<ListCourseProtected/>} />
-             <Route path='/courses/create' element={<CreateCourse/>} />
-             <Route path='/courses/:id/edit' element={<UpdateCourse/>}/>
+            <Route element={<Layout />}>
+              <Route path='/admin' element={<Admin/>} />  
+              <Route path='/coursesprotected' element={<ListCourseProtected/>} />
+              <Route path='/courses/create' element={<CreateCourse/>} />
+              <Route path='/courses/:id/edit' element={<UpdateCourse/>}/>
 
           {/*  USERS */}
 
-             <Route path='/usersprotected' element={<ListUsersProtected/>} />
-             <Route path='/users/create' element={<CreateUser/>} />
-             <Route path='/users/:id/edit' element={<UpdateUser/>}/>
+              <Route path='/usersprotected' element={<ListUsersProtected/>} />
+              <Route path='/users/create' element={<CreateUser/>} />
+              <Route path='/users/:id/edit' element={<UpdateUser/>}/>
 
       {/* TASK */}
       
-             <Route path='/taskprotected' element={<ListTaskProtected/>} />
-             <Route path='/tasks/create' element={<CreateTask/>} />
-             <Route path='/tasks/:id/edit' element={<UpdateTask/>}/>
+              <Route path='/taskprotected' element={<ListTaskProtected/>} />
+              <Route path='/tasks/create' element={<CreateTask/>} />
+              <Route path='/tasks/:id/edit' element={<UpdateTask/>}/>
 {/* FILTER PROGRESS
  */}             
-             <Route path='/user-courses' element={<UserCourses/>}/>
+              <Route path='/user-courses' element={<UserCourses/>}/>
 
   {/*       </RequireAuth> */}
             </Route>
-        </Routes>
+         </Routes>
       </BrowserRouter>
      
     </div>

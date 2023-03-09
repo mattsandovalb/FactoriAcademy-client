@@ -12,7 +12,7 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import { Link } from 'react-router-dom';
-import logo from '../../../assets/factoria/logoBlanco.png'; 
+import logo from '../../../assets/factoria/logoblack.png'; 
 import ForumIcon from '@mui/icons-material/Forum';
 
 const pages = ['Home', 'Cursos', 'Blog'];
@@ -61,7 +61,7 @@ function ResponsiveAppBar() {
               textDecoration: 'none',
             }}
           >
-  <img src={logo} alt="Logo" height="80" />
+  <img src={logo} alt="Logo" height="35" />
           </Typography> 
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
