@@ -13,7 +13,8 @@ import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import logo from '../../assets/factoria/logoblack.png'; 
-// import { getMeFn, loginUserFn } from '../components/api/AuthUser';
+
+
 import { login } from '../../services/apiAuth/apiAuth';
 import { useAuthUserContext } from '../../services/providers/AuthUserContextProvider';
 
@@ -23,7 +24,7 @@ function Copyright(props) {
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
       {'Copyright © '}
       <Link color="inherit" href="https://factoriaf5.org/">
-FACTORIA F5  </Link>{' '}
+           FACTORIA F5  </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
     </Typography>
@@ -32,15 +33,6 @@ FACTORIA F5  </Link>{' '}
 
 const theme = createTheme();
 
-// export default function SignInSide() {
-//   const handleSubmit = (event) => {
-//     event.preventDefault();
-//     const data = new FormData(event.currentTarget);
-//     console.log({
-//       email: data.get('email'),
-//       password: data.get('password'),
-//     });
-//   };
   
 const Login = () => {
   const [email, setEmail] = useState('');

@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import AutoGraphIcon from '@mui/icons-material/AutoGraph';
 import logo from '../../../assets/factoria/logoblack.png'; 
 import { getUser } from '../../../services/apiAuth/apiAuth';
-import { useEffect } from 'react';
+import { useEffect } from 'react';import ForumIcon from '@mui/icons-material/Forum';
 import ForumIcon from '@mui/icons-material/Forum';
 
 
@@ -17,22 +17,6 @@ function openChat() {
 const drawerWidth = 220;
 
 export default function DashAdmin() {
-  const token = localStorage.getItem('token');
-  
-  async function fetchUser(){
-    try {
-      const  user  = await getUser();
-      console.log(user)
-      // redirect to dashboard
-    } catch (error) {
-      console.error(error);
-    }
-  }
-  ;
-  useEffect(() => {
-    fetchUser();
-  }, [])
-
   return (
     <>
     <Box sx={{ display: 'flex' }}>
@@ -41,7 +25,7 @@ export default function DashAdmin() {
   <Toolbar sx={{ justifyContent: 'space-between' }}>
   <img src={logo} alt="Logo" height="25" />
     <Typography variant="h5" component="h5" sx={{ flexGrow: 1, m:2, pl:10 }}>
-      Dashboard
+      dashboard
     </Typography>
     <IconButton style={{color: "white"}} onClick={openChat}>
       <ForumIcon sx={{ color: 'white' }}  />

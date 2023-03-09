@@ -5,7 +5,9 @@ import { Edit, Delete } from '@mui/icons-material';
 import Swal from 'sweetalert2';
 
 
-import { getUsers, deleteUser } from './../../../services/apiService/apiService';
+
+import { getUsers, deleteUser } from '../../../services/apiService/apiService';
+
 
 
 const ListUsersProtected = () => {

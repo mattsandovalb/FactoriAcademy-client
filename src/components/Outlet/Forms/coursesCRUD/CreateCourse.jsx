@@ -2,7 +2,10 @@ import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import {TextField, Button, Container, Typography, Box, FormControl} from '@mui/material';
-import { createCourse } from './../../../../services/apiService/apiService';
+
+
+import { createCourse } from '../../../../services/apiService/apiService';
+
 
 const CreateCourse = () => {
 

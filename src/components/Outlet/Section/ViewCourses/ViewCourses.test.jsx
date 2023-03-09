@@ -3,7 +3,7 @@ import { render } from '@testing-library/react';
 import ViewCourses from './ViewCourses';
 
 describe('ViewCourses', () => {
-  it('renders without crashing', () => {
+  it('renders without error', () => {
     render(<ViewCourses />);
   });
 });
