@@ -3,9 +3,7 @@ import AceEditor from 'react-ace';
 import 'ace-builds/src-noconflict/mode-html';
 import 'ace-builds/src-noconflict/theme-github';
 import { Box, Typography, Button } from '@mui/material';
-import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import TestResults from "./TestResults";
-import Task2 from '../Task2/Task2';
 
 
 const Task1 = () => {
@@ -20,39 +18,37 @@ const Task1 = () => {
     const iframe = document.getElementById('test-output');
     iframe.srcdoc = editorValue;
   };
-  
-  const [showTask2, setShowTask2] = useState(false);
 
-  const handleClick = () => {
-    setShowTask2(true);
-  };
 
   function runTests() {
     const h1Regex = /<h1>Hello World<\/h1>/;
-
+    const pRegex =  /<p>Welcome to React<\/p>/;
     
-    const passed = h1Regex.test(editorValue);
-
-    
+    const h1Passed = h1Regex.test(editorValue);
+    const pPassed = pRegex.test(editorValue);
+  
     const tests = [
       {
         name: "Contains <h1>Hello World</h1>",
-        passed: passed,
-        error: passed ? "" : "Expected <h1>Hello World</h1> tag was not found",
+        passed: h1Passed,
+        error: h1Passed ? "" : "Expected <h1>Hello World</h1> tag was not found",
+      },
+      {
+        name: "Contains <p>Welcome to React</p>",
+        passed: pPassed,
+        error: pPassed ? "" :  "Expected <p>Welcome to React</p> tag was not found"
       },
     ];
-
+  
     setTests(tests);
   }
-
+  
   return (
   <Box sx={{ p: '16px', display: 'flex', flexDirection: { xs: 'column', md: 'row' } }}>
   <Box sx={{ flex: '1', padding: '16px' }}>
     <Typography variant="h1" component="h1" sx={{ padding: '16px' }}>HTML</Typography>
     <Typography variant="h3" sx={{ marginBottom: { xs: '8px', md: '16px' } }}>Description</Typography>
-    <Typography variant="body1">HELLO WORLD Exercises
-      It's time to practice working with HTML. Please add on to the markup to recreate the two words 
-      Hello World 
+    <Typography variant="body1">Create a web page with an h1 tag that says 'Hello World' and a p tag that says 'Welcome to React'",
     </Typography>
     <TestResults tests={tests} /> / 
   </Box>
@@ -77,13 +73,7 @@ const Task1 = () => {
     <iframe id="test-output" title="Test Output" width="100%" height="420px" style={{ backgroundColor: 'darkgray' }}></iframe>
     <Button variant="contained" sx={{ m: 1,  }} onClick={onTestClick}>SEE RESULT</Button>
     <Button variant="contained" onClick={runTests}>Run Tests</Button>
-    {showTask2 ? (
-        <Task2 />
-      ) : (
-        <Button variant="contained" color="secondary" sx={{ m: 1 }} onClick={handleClick}>
-          NEXT <ArrowForwardIosIcon />
-        </Button>
-      )}  </Box>
+   </Box>
 </Box>
   );
 };
