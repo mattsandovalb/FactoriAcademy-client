@@ -3,7 +3,7 @@ import AceEditor from 'react-ace';
 import 'ace-builds/src-noconflict/mode-html';
 import 'ace-builds/src-noconflict/theme-github';
 import { Box, Typography, Button } from '@mui/material';
-import TestResults from "./TestResults";
+import TestResult from "../TestResult/TestResult";
 
 
 const Task1 = () => {
@@ -50,7 +50,7 @@ const Task1 = () => {
     <Typography variant="h3" sx={{ marginBottom: { xs: '8px', md: '16px' } }}>Description</Typography>
     <Typography variant="body1">Create a web page with an h1 tag that says 'Hello World' and a p tag that says 'Welcome to React'",
     </Typography>
-    <TestResults tests={tests} /> / 
+    <TestResult tests={tests} /> / 
   </Box>
   <Box sx={{ flex: '1', padding: '16px' }}>
     <Typography variant="h6" sx={{ marginBottom: { xs: '8px', md: '16px' } }}>WRITE YOUR CODE HERE</Typography>

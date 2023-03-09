@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
-import { getCourseById } from '../../../../services/apiService';
+import { getCourseById } from '../../../../services/apiService/apiService';
 import { Typography, Container, Button } from '@mui/material';
 import Task1 from '../../../ace/Task1/Task1';
 import CourseItem from '../CourseItem/CourseItem';

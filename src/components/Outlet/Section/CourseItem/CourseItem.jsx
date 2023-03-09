@@ -5,7 +5,7 @@ import {CardContent, Container, CardMedia } from '@mui/material';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 
-import { getCourseById} from '../../../../services/apiService'
+import { getCourseById} from '../../../../services/apiService/apiService'
 
 const CourseItem =() => {
 

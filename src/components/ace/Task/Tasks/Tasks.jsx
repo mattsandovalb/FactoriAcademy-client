@@ -4,8 +4,8 @@ import 'ace-builds/src-noconflict/mode-html';
 import 'ace-builds/src-noconflict/theme-github';
 import { Box, Typography, Button } from '@mui/material';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-import TestResults from './TestResult';
-import { tasks } from '../../../data/tasks.js';
+import TestResult from '../../TestResult/TestResult';
+import { tasks } from '../../../../data/tasks.js';
 import ListTasks from './ListTasks';
 
 const Task = () => {
@@ -67,7 +67,7 @@ const Task = () => {
             Run Tests
           </Button>
         </Box>
-        <TestResults tests={tests} runTests={runTests} />
+        <TestResult tests={tests} runTests={runTests} />
       </Box>
     </Box>
   );

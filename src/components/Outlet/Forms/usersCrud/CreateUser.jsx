@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { Button, Box, Container, FormControl, TextField, Typography } from '@mui/material';
-import { createUser } from './../../../../services/apiService';
+import { createUser } from '../../../../services/apiService/apiService';
 
 const CreateUser = () => {
 

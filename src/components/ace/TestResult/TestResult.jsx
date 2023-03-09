@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, Typography, List, ListItem, ListItemText } from '@mui/material';
 
-function TestResults(props) {
+function TestResult(props) {
   const { tests } = props;
 
   const allTestsPassed = tests.every((test) => test.passed);
@@ -37,4 +37,4 @@ function TestResults(props) {
   );
 }
 
-export default TestResults;
+export default TestResult;

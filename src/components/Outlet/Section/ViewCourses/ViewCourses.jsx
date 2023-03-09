@@ -10,7 +10,7 @@ import {
   CardMedia,
 } from '@mui/material';
 import {Link} from 'react-router-dom';
-import { getCourses } from '../../../../services/apiService';
+import { getCourses } from '../../../../services/apiService/apiService';
 import logocss from '../../../../assets/courses/css.jpg'; 
 import logohtml from '../../../../assets/courses/html.png'; 
 import logofactoria from '../../../../assets/courses/factoria.jpg'; 
@@ -51,7 +51,7 @@ const ViewCourses = () => {
                 <Typography sx={{ mb: 1.5 }} color="text.secondary">
                   {course.tech}
                 </Typography>
-                <Typography variant="body2">{course.description}</Typography>
+                <Typography variant="h6">{course.description}</Typography>
                 <Typography variant="h6" component="h6">
                   {course.level}
                 </Typography>
