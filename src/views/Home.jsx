@@ -13,7 +13,7 @@ function Home() {
         <Container sx={{ p: 2 }}>
           <SignIn/> 
           <Typography variant="h2" component="h2" sx={{ p: 2 }}>Bienvenid@s a tod@s!</Typography>
-          <Typography variant="body2" component="body2" sx={{ p: 2 }}>FactoriAcademy es una plataforma didáctica para personas como tu que han sido preseleccionadas por Factoría F5 con la idea de poder acceder a alguno de sus cursos y bootcamps. Nuestro objetivo es que podáis tener vuestro primer contacto con el código, y aseguraros que eso no muerde.
+          <Typography variant="body1" component="body1" sx={{ p: 10, m: 5 }}>FactoriAcademy es una plataforma didáctica para personas como tu que han sido preseleccionadas por Factoría F5 con la idea de poder acceder a alguno de sus cursos y bootcamps. Nuestro objetivo es que podáis tener vuestro primer contacto con el código, y aseguraros que eso no muerde.
           Tenéis que hace todos los ejercicios que se os muestre en vuestro perfil por un tiempo limitado, asi que date prisa! Pero no os alarmes, te daremos documentación oficial, correcciones y un chat con el administrador. No pasa nada si no te convence el mundo de código. Lo mejor es probarlo y que te lleves la experiencia!</Typography>
         </Container>
       <Footer/>
