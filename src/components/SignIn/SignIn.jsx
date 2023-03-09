@@ -13,9 +13,8 @@ import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import logo from '../../assets/factoria/logoblack.png'; 
-import { login } from '../../services/apiAuth';
 // import { getMeFn, loginUserFn } from '../components/api/AuthUser';
-//import { login } from '../services/apiAuth';
+import { login } from '../../services/apiAuth/apiAuth';
 import { useAuthUserContext } from '../../services/providers/AuthUserContextProvider';
 
 
