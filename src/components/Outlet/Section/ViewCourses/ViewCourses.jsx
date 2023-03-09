@@ -11,7 +11,14 @@ import {
 } from '@mui/material';
 import {Link} from 'react-router-dom';
 import { getCourses } from '../../../../services/apiService';
+import logocss from '../../../../assets/courses/css.jpg'; 
+import logohtml from '../../../../assets/courses/html.png'; 
+import logofactoria from '../../../../assets/courses/factoria.jpg'; 
+import logojs from '../../../../assets/courses/js.png'; 
+import logophp from '../../../../assets/courses/php.png'; 
 
+
+const logos = [logohtml, logocss, logofactoria, logojs, logophp];
 const ViewCourses = () => {
   const [courses, setCourses] = useState([]);
 
@@ -24,8 +31,6 @@ const ViewCourses = () => {
     setCourses(response);
   };
 
-
-  
   return (
     <Container maxWidth="md">
       <Grid container spacing={2}>
@@ -34,12 +39,8 @@ const ViewCourses = () => {
             <Card sx={{ height: 450 }}>
             <CardMedia
   sx={{ height: 140 }}
-  image={`http://localhost:8000/images/poster/${course.poster}`}
-  onError={(e) => {
-    e.target.src = "../../../../assets/factoria/coder.png";
-  }}
+  image={logos[Math.floor(Math.random() * logos.length)]}
 />
-
               <CardContent sx={{ height: 220 }}>
                 <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
                   {course.tech}

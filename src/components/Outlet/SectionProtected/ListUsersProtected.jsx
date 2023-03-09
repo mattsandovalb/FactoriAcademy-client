@@ -64,8 +64,7 @@ const ListUsersProtected = () => {
               <TableCell  align="right">ID</TableCell>
               <TableCell  align="right">Name</TableCell>
               <TableCell  align="right">E-Mail</TableCell>
-              <TableCell  align="right">Password</TableCell>
-              <TableCell >Role</TableCell>
+              <TableCell align="right">Role</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -74,7 +73,6 @@ const ListUsersProtected = () => {
                 <TableCell>{user.id}</TableCell>
                 <TableCell>{user.name}</TableCell>
                 <TableCell>{user.email}</TableCell>
-                <TableCell>{user.password}</TableCell>
                 <TableCell>{user.role}</TableCell>
                 <TableCell>
                   <Link to={`/users/${user.id}/edit`}>

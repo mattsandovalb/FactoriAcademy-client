@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import App from './App.js';
 import reportWebVitals from './reportWebVitals.js';
 import {ThemeProvider, createTheme} from '@mui/material';
-//import Swal from 'sweetalert2';
+
 
 const theme = createTheme({
   palette: {
@@ -13,10 +13,10 @@ const theme = createTheme({
     secondary: {
       main: '#020100',
     },
-    complement1: {
+    info: {
       main: '#9C9C9C',
     },
-    complement2: {
+    warning: {
       main: '#FFA37F',
     },
     white: {
@@ -56,18 +56,7 @@ const theme = createTheme({
     },
   },
 });
-/* Swal.setDefaults({
-  customClass: {
-    container: theme.palette.complement1.main,
-    popup: theme.palette.complement2.main,
-    header: theme.palette.primary.main,
-    title: theme.typography.h1.fontWeight,
-    content: theme.typography.body1.fontWeight,
-    confirmButton: theme.palette.secondary.main,
-  },
-});
 
- */
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

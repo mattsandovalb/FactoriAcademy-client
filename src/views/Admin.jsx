@@ -9,7 +9,6 @@ function Admin() {
         “LOS GRANDES ACTOS SE COMPONEN DE PEQUEÑAS OBRAS REALIZADAS DÍA A DÍA.” LAO TZU
         </Typography> 
         <img src={logo} alt="Logo" height="400" />
-    
     </Container>
   )
 }
