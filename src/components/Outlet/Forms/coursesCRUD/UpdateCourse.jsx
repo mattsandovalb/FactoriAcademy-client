@@ -3,8 +3,8 @@ import { useNavigate, useParams, Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import {TextField, Button, Container, Typography, Box, FormControl} from '@mui/material';
 import { getCourseById, updateCourse } from '../../../../services/apiService/apiService';
-import { getCourseById, updateCourse } from './../../../../services/apiService';
-import queryString from 'query-string';
+
+//import queryString from 'query-string';
 
 const UpdateCourse = () => {
 
@@ -49,7 +49,7 @@ const UpdateCourse = () => {
                 
                 await updateCourse(id, formData);
 
-                // navigate('/coursesprotected');
+                navigate('/coursesprotected');
                 Swal.fire('Saved!', '', 'success');
             } else if (result.isDenied) {
                 Swal.fire('Changes are not saved', '', 'info');
