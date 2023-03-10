@@ -5,8 +5,8 @@ import CssBaseline from '@mui/material/CssBaseline';
 import { Link } from 'react-router-dom';
 import AutoGraphIcon from '@mui/icons-material/AutoGraph';
 import logo from '../../../assets/factoria/logoblack.png'; 
-import { getUser } from '../../../services/apiAuth/apiAuth';
-import { useEffect } from 'react';
+/* import { getUser } from '../../../services/apiAuth/apiAuth';
+import { useEffect } from 'react'; */
 import ForumIcon from '@mui/icons-material/Forum';
 
 

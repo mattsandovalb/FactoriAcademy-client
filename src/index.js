@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import App from './App.js';
 import reportWebVitals from './reportWebVitals.js';
 import {ThemeProvider, createTheme} from '@mui/material';
-import { AuthUserContextProvider } from './services/providers/AuthUserContextProvider.jsx';
+import { AuthUserContextProvider } from './providers/AuthUserContextProvider.jsx';
 
 
 const theme = createTheme({

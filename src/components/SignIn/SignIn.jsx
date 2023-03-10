@@ -16,7 +16,7 @@ import logo from '../../assets/factoria/logoblack.png';
 
 
 import { login } from '../../services/apiAuth/apiAuth';
-import { useAuthUserContext } from '../../services/providers/AuthUserContextProvider';
+//import { useAuthUserContext } from '../../providers/AuthUserContextProvider.jsx';
 
 
 function Copyright(props) {
@@ -38,7 +38,7 @@ const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const authUser = useAuthUserContext()
+  //const authUser = useAuthUserContext()
 
   const handleSubmit = async (e) => {
     e.preventDefault();
